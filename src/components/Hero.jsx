@@ -16,9 +16,10 @@ const Hero = () => {
             Fine and Reliable Service
           </p>
 
-          <button className="mt-8 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700">
-            Get Started
+          <button className="mt-8 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 cursor-pointer">
+           Get Started
           </button>
+
         </div>
 
         

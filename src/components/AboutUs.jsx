@@ -36,9 +36,11 @@ export default function AboutUs() {
             quality and reliable service.
           </p>
 
-          <button className="bg-blue-600 text-white px-6 py-3 rounded-md text-sm font-medium hover:bg-blue-700 transition">
-            See Detail
-          </button>
+          <button className="bg-blue-600 text-white px-6 py-3 rounded-md text-sm font-medium 
+  hover:bg-blue-700 transition cursor-pointer">
+  See Detail
+</button>
+
         </div>
       </div>
     </section>
