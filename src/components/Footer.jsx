@@ -1,75 +1,82 @@
 import React from "react";
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
+import {
+  FaPhone,
+  FaEnvelope,
+  FaMapMarkerAlt,
+  FaFacebookF,
+  FaInstagram,
+  FaTwitter,
+} from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa6";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-100 text-gray-700 py-8">
-  
-      <div className="flex justify-center mb-4">
+    <footer className="bg-gray-100 text-gray-700 py-12">
+
+      
+      <div className="flex justify-center mb-6">
         <img
-          src="/images/logo.png" 
+          src="/images/logo.png"
           alt="My Computer Shop Logo"
           className="h-16 object-contain"
         />
       </div>
 
-      
       <div className="max-w-7xl mx-auto px-6 md:px-16">
-        <hr className="border-t border-gray-400 mb-6" />
+        <hr className="border-t border-gray-400 mb-8" />
       </div>
 
       
-      <div className="max-w-7xl mx-auto px-6 md:px-16 grid grid-cols-1 md:grid-cols-4 gap-8 items-start">
+      <div className="max-w-7xl mx-auto px-6 md:px-16 grid grid-cols-1 md:grid-cols-4 gap-x-10 gap-y-8 items-start">
+
         
-        <div>
-          <h3 className="font-semibold mb-2 text-black">Quick Links</h3>
-          <ul className="space-y-1 text-sm">
+        <div className="space-y-3">
+          <h3 className="font-semibold text-black mb-2">Quick Links</h3>
+          <ul className="space-y-2 text-sm">
             <li><a href="#" className="hover:text-green-500">Term Of Use</a></li>
             <li><a href="#" className="hover:text-green-500">Privacy Policy</a></li>
           </ul>
         </div>
 
         
-        <div>
-          <h3 className="font-semibold mb-2 text-black">Contact Us</h3>
+        <div className="space-y-3">
+          <h3 className="font-semibold text-black mb-2">Contact Us</h3>
           <ul className="space-y-2 text-sm">
-            <li className="flex items-center gap-2">
-              <FaPhone /> <span>+977-9812345678</span>
-            </li>
-            <li className="flex items-center gap-2">
-              <FaEnvelope /> <span>mcshopnepal@gmail.com</span>
-            </li>
-            <li className="flex items-center gap-2">
-              <FaMapMarkerAlt /> <span>Dybalo Marga, Galkopakha, Kathmandu</span>
-            </li>
+            <li className="flex items-center gap-2"><FaPhone /> <span>+977-9812345678</span></li>
+            <li className="flex items-center gap-2"><FaEnvelope /> <span>mcshopnepal@gmail.com</span></li>
+            <li className="flex items-center gap-2"><FaMapMarkerAlt /> <span>Dybalo Marga, Galkopakha, Kathmandu</span></li>
           </ul>
         </div>
 
         
-        <div>
-          <h3 className="font-semibold mb-2 text-black">Map</h3>
-          <img 
-            src="/images/map.png" 
-            alt="Map Location"
-            className="w-36 h-24 object-cover rounded"
-          />
+        <div className="space-y-3">
+          <h3 className="font-semibold text-black mb-2">Map</h3>
+          <div className="w-full h-36 rounded overflow-hidden">
+            <iframe
+              title="My Computer Shop Location"
+              src="https://www.google.com/maps?q=My%20Computer%20Shop%20Dybalo%20Marga%20Galkopakha%20Kathmandu&output=embed"
+              className="w-full h-full border-0"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
         </div>
 
         
-        <div>
-          <h3 className="font-semibold mb-2 text-black">Social Media</h3>
-          <div className="flex gap-3 text-gray-600">
+        <div className="space-y-3 mt-8 md:mt-0 flex flex-col justify-start">
+          <h3 className="font-semibold text-black mb-2">Social Media</h3>
+          <div className="flex gap-4 text-gray-600 text-lg">
             <a href="#" className="hover:text-green-500"><FaInstagram /></a>
             <a href="#" className="hover:text-green-500"><FaFacebookF /></a>
             <a href="#" className="hover:text-green-500"><FaYoutube /></a>
             <a href="#" className="hover:text-green-500"><FaTwitter /></a>
           </div>
         </div>
+
       </div>
 
       
-      <div className="max-w-7xl mx-auto px-6 md:px-16 mt-8">
+      <div className="max-w-7xl mx-auto px-6 md:px-16 mt-10">
         <hr className="border-t border-gray-400 mb-4" />
         <p className="text-center text-sm text-gray-500">
           &copy; mcshop@2025 All rights reserved

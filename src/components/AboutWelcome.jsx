@@ -1,24 +1,23 @@
 import React from "react";
 
-const Testimonials = () => {
+const AboutWelcome = () => {
   return (
     <section className="relative bg-white min-h-[80vh] py-24 px-6 md:px-16">
       
       
-      <div className="absolute top-0 left-0 w-6 h-6 border-2 border-green-500 rounded-full"></div>
-      <div className="absolute bottom-0 right-0 w-6 h-6 border-2 border-green-500 rotate-45"></div>
-      <div className="absolute top-10 right-20 w-6 h-6 border-2 border-orange-500 rotate-45"></div>
-      <div className="absolute bottom-20 left-20 w-6 h-6 border-2 border-purple-500 rotate-45"></div>
+      <span className="absolute -top-6 left-40 w-4 h-4 border-2 border-green-500 rotate-45"></span>
+      <span className="absolute top-32 -left-6 w-5 h-5 border-2 border-orange-400 rounded-full"></span>
 
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center">
-        
+       
         <div className="md:col-span-1">
-          <p className="text-sm text-gray-500 mb-2">Testimonials</p>
+          <p className="text-sm text-gray-500 mb-2">Welcome</p>
 
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
-            Get To Know Our Services Closer Through{" "}
-            <span className="text-green-500">Customer Reviews</span>
-          </h2>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
+            Welcome To <span className="text-green-500">Mc-Shop</span>, <br />
+            For Fine And Reliable <br />
+            Digital Printing Service.
+          </h1>
 
           <p className="text-gray-600 mb-6 leading-relaxed">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.  
@@ -30,15 +29,15 @@ const Testimonials = () => {
           </p>
 
           <p className="font-semibold text-gray-800">
-            Sally Wily - <span className="text-gray-500">Customer Rona</span>
+            Rajesh Dongol - <span className="text-gray-500">Proprietor</span>
           </p>
         </div>
 
-       
+        
         <div className="md:col-span-1"></div>
       </div>
     </section>
   );
 };
 
-export default Testimonials;
+export default AboutWelcome;
