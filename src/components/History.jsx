@@ -23,6 +23,7 @@ const History = () => {
     <section className="bg-white min-h-[80vh] py-24">
       <div className="max-w-7xl mx-auto px-6">
 
+       
         <div className="text-center mb-14">
           <p className="text-sm text-gray-500 mb-2">History</p>
           <h2 className="text-3xl md:text-4xl font-bold">
@@ -30,15 +31,25 @@ const History = () => {
           </h2>
         </div>
 
+        
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 text-center">
           {historyData.map((item, index) => (
             <div key={index}>
-              <img
-                src={item.image}
-                alt={item.year}
-                className="mx-auto w-64 h-64 object-cover rounded-md shadow-md"
-              />
 
+              
+              <div className="w-64 h-64 mx-auto overflow-hidden rounded-md shadow-md">
+                <img
+                  src={item.image}
+                  alt={item.year}
+                  className="
+                    w-full h-full object-cover
+                    transition-transform duration-700 ease-out
+                    hover:scale-105
+                  "
+                />
+              </div>
+
+              
               <h3 className="text-xl font-semibold mt-6">
                 {item.year}
               </h3>
@@ -46,6 +57,7 @@ const History = () => {
               <p className="text-gray-600 mt-2 max-w-xs mx-auto leading-relaxed">
                 {item.title}
               </p>
+
             </div>
           ))}
         </div>

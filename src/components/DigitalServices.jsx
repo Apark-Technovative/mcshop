@@ -1,0 +1,128 @@
+import React, { useState, useEffect, useRef } from "react";
+import axiosInstance from "../utils/axios";
+
+const DigitalServices = () => {
+  const [services, setServices] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const servicesPerPage = 3;
+
+  const sectionRef = useRef(null);
+
+  const fetchServices = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+
+      const res = await axiosInstance.get("/api/getAllServices");
+      setServices(res.data?.data || []);
+    } catch (err) {
+      console.error("Error fetching services:", err);
+      setError("Error fetching services");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchServices();
+  }, []);
+
+  if (loading)
+    return (
+      <section className="py-20 text-center text-gray-600">
+        Loading services...
+      </section>
+    );
+
+  if (error)
+    return (
+      <section className="py-20 text-center text-red-600">{error}</section>
+    );
+
+  if (!services.length)
+    return (
+      <section className="py-20 text-center text-gray-700">
+        No services available.
+      </section>
+    );
+
+  
+  const indexOfLastService = currentPage * servicesPerPage;
+  const indexOfFirstService = indexOfLastService - servicesPerPage;
+  const currentServices = services.slice(indexOfFirstService, indexOfLastService);
+  const totalPages = Math.ceil(services.length / servicesPerPage);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    sectionRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  return (
+    <section ref={sectionRef} className="bg-gray-100 py-16">
+      <div className="max-w-7xl mx-auto px-6">
+      <h2 className="text-center mb-12">
+  <p className="text-sm text-gray-500 mb-2">Services</p>
+  <span className="text-4xl md:text-5xl font-bold leading-tight">
+    {/* Easy And Fast Print Customization <br />
+    <span className="text-black-600">With Digital Print Services</span> */}
+  Quick Custom Prints & Binding
+  </span>
+</h2>
+
+
+        <div className="flex flex-col gap-16">
+          {currentServices.map((service, index) => (
+            <div
+              key={service._id || index}
+              className={`flex flex-col md:flex-row items-center gap-8 ${
+                index % 2 !== 0 ? "md:flex-row-reverse" : ""
+              }`}
+            >
+              <img
+                src={`${import.meta.env.VITE_API_BASE_URL}/uploads/${service.images?.[0]}`}
+                alt={service.title}
+                className="
+                  w-full 
+                  md:w-1/2 
+                  h-80 
+                  md:h-[28rem] 
+                  object-cover 
+                  rounded-lg 
+                  shadow-md
+                "
+              />
+              <div className="md:w-1/2">
+                <h3 className="text-xl font-semibold mb-4">{service.title}</h3>
+                <p className="text-gray-600 mb-6">{service.description}</p>
+                <button className="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition">
+                  See Detail
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        
+        <div className="flex justify-center mt-10 space-x-3">
+          {Array.from({ length: totalPages }, (_, i) => (
+            <button
+              key={i}
+              onClick={() => handlePageChange(i + 1)}
+              className={`px-4 py-2 rounded-lg ${
+                currentPage === i + 1
+                  ? "bg-blue-600 text-white"
+                  : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+              }`}
+            >
+              {i + 1}
+            </button>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default DigitalServices;
