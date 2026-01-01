@@ -2,7 +2,7 @@ import React from "react";
 
 const Testimonials = () => {
   return (
-    <section className="relative bg-white min-h-[80vh] py-24 px-6 md:px-16">
+    <section className="relative bg-white min-h-[80vh] py-24 px-6 md:px-16 overflow-hidden">
 
 
       <div className="absolute top-0 left-0 w-6 h-6 border-2 border-green-500 rounded-full"></div>
