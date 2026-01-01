@@ -44,7 +44,11 @@ const Footer = () => {
           <ul className="space-y-2 text-sm">
             <li className="flex items-center gap-2"><FaPhone /> <span>+977-9812345678</span></li>
             <li className="flex items-center gap-2"><FaEnvelope /> <span>mcshopnepal@gmail.com</span></li>
+<<<<<<< HEAD
              <li className="flex items-center gap-2"><FaMapMarkerAlt />  <span>Dybalo Marga, Galkopakha, Kathmandu</span></li>
+=======
+            <li className="flex items-center gap-2"><FaMapMarkerAlt />  <span>Dybalo Marga, Galkopakha, Kathmandu</span></li>
+>>>>>>> 85a94ca (Completed Service Detail page)
           </ul>
         </div>
 
@@ -52,17 +56,11 @@ const Footer = () => {
         <div className="space-y-3">
           <h3 className="font-semibold text-black mb-2">Map</h3>
           <div className="w-full h-36 rounded overflow-hidden">
-            <iframe
-              title="My Computer Shop Location"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3531.567891234567!2d85.328479!3d27.700765!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb1923abcdef12%3A0xabcdef1234567890!2sMy%20Computer%20Shop%20(Naksha%20Printing%20%26%20Photocopy%20Shop)!5e0!3m2!1sen!2snp!4v1767180601472!5m2!1sen!2snp"
-              width="600"
-              height="450"
-              style={{ border: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              className="w-full h-full"
-            ></iframe>
+           <iframe
+            className="h-[500px] w-full"
+            src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=My%20Computer%20Shop%20(Naksha%20Printing%20&amp;%20Photocopy%20Shop)%20Color%20&amp;%20B/W+(My%20Computer%20Shop)&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+            loading="lazy"
+          ></iframe>
           </div>
         </div>
 

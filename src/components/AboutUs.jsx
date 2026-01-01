@@ -11,7 +11,6 @@ export default function AboutUs() {
 
       <div className="max-w-7xl mx-auto px-6 py-28 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center h-full">
         
-        
         <div className="flex justify-center">
           <img
             src="/images/printer.png"
@@ -20,7 +19,6 @@ export default function AboutUs() {
           />
         </div>
 
-        
         <div className="lg:pl-12">
           <p className="text-sm text-gray-500 mb-4">About Us</p>
 
@@ -37,12 +35,15 @@ export default function AboutUs() {
           </p>
 
           <button className="bg-blue-600 text-white px-6 py-3 rounded-md text-sm font-medium 
-  hover:bg-blue-700 transition cursor-pointer">
-  See Detail
-</button>
+            hover:bg-blue-700 transition cursor-pointer">
+            See Detail
+          </button>
 
         </div>
       </div>
+
+   
+      <div className="w-full h-[2px] bg-gray-300 mt-10"></div>
     </section>
   );
 }
