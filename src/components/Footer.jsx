@@ -44,11 +44,6 @@ const Footer = () => {
           <ul className="space-y-2 text-sm">
             <li className="flex items-center gap-2"><FaPhone /> <span>+977-9812345678</span></li>
             <li className="flex items-center gap-2"><FaEnvelope /> <span>mcshopnepal@gmail.com</span></li>
-<<<<<<< HEAD
-             <li className="flex items-center gap-2"><FaMapMarkerAlt />  <span>Dybalo Marga, Galkopakha, Kathmandu</span></li>
-=======
-            <li className="flex items-center gap-2"><FaMapMarkerAlt />  <span>Dybalo Marga, Galkopakha, Kathmandu</span></li>
->>>>>>> 85a94ca (Completed Service Detail page)
           </ul>
         </div>
 
