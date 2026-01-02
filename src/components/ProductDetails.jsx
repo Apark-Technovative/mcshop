@@ -24,61 +24,51 @@ const ProductDetails = ({ serviceId }) => {
   }, [serviceId]);
 
   if (loading) {
-    return <section className="py-20 text-center">Loading...</section>;
+    return <section className="py-32 text-center">Loading...</section>;
   }
 
   if (!service) {
-    return <section className="py-20 text-center">Service not found</section>;
+    return <section className="py-32 text-center">Service not found</section>;
   }
 
   return (
-    <section className="bg-white py-16">
+    <section className="bg-white py-32"> 
       <div className="max-w-7xl mx-auto px-6">
 
-       
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-12">
+        <div className="w-full mb-12"> 
+          <img
+            src={`${import.meta.env.VITE_API_BASE_URL}/uploads/${service.images?.[0]}`}
+            alt={service.title}
+            className="w-full h-[420px] md:h-[500px] lg:h-[550px] object-cover rounded-md"
+          />
+        </div>
 
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12"> 
           
-<div className="overflow-hidden rounded-md shadow-xl">
-  <img
-    src={`${import.meta.env.VITE_API_BASE_URL}/uploads/${service.images?.[0]}`}
-    alt={service.title}
-    className="w-full max-h-[420px] object-contain transition-transform duration-300 hover:scale-105"
-  />
-</div>
-
-         
-          <div className="flex flex-col justify-center">
-            <h2 className="text-3xl font-semibold mb-4">
+          <div className="md:col-span-2">
+            <h2 className="text-2xl md:text-3xl font-semibold mb-6">
               {service.title}
             </h2>
-
-            <p className="text-gray-600 leading-relaxed mb-6">
+            <p className="text-gray-600 leading-relaxed max-w-2xl">
               {service.description}
             </p>
-
-            
-            <button className="bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 transition-colors cursor-pointer">
-              Purchase
-            </button>
           </div>
 
-        </div>
-
-        
-        <div className="flex justify-center mt-8">
-          <div className="text-center">
-            <h3 className="text-sm font-semibold mb-2">
+          <div className="md:col-span-1">
+            <h4 className="text-sm font-semibold mb-4">
               Available Hours*
-            </h3>
+            </h4>
 
-            <div className="text-sm text-gray-700 flex justify-center gap-2">
-              <span>Sunday - Friday |</span>
-              <span>08:00 am - 06:00 pm</span>
+            <div className="flex items-center justify-between text-sm text-gray-700 border-b pb-2">
+              <span>Sunday - Friday</span>
+              <span className="flex items-center gap-2">
+                <span className="w-2 h-2 bg-black rounded-full"></span>
+                08:00 am - 06:00 pm
+              </span>
             </div>
           </div>
-        </div>
 
+        </div>
       </div>
     </section>
   );

@@ -42,8 +42,9 @@ const Footer = () => {
         <div className="space-y-3">
           <h3 className="font-semibold text-black mb-2">Contact Us</h3>
           <ul className="space-y-2 text-sm">
-            <li className="flex items-center gap-2"><FaPhone /> <span>+977-9812345678</span></li>
+            <li className="flex items-center gap-2"><FaPhone /> <span>+977-9851082739</span></li>
             <li className="flex items-center gap-2"><FaEnvelope /> <span>mcshopnepal@gmail.com</span></li>
+            <li className="flex items-center gap-2"><FaMapMarkerAlt /> <span>Dyabu Marga, Galkopakha, Kathmandu</span></li>
           </ul>
         </div>
 

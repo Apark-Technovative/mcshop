@@ -5,12 +5,11 @@ export default function AboutHero() {
     <section className="relative min-h-[60vh] sm:min-h-[65vh] md:min-h-[70vh] flex flex-col items-center justify-center text-center bg-[#f6f5fb] overflow-hidden px-4 sm:px-6">
 
       <h1 className="text-3xl sm:text-4xl md:text-4xl font-bold mb-4 sm:mb-5 text-black">
-        About Us
+        Contact Us
       </h1>
 
       <p className="max-w-xs sm:max-w-md md:max-w-xl text-xs sm:text-sm md:text-sm text-gray-600 leading-relaxed">
-        We offer a range of high-quality printing services for business and individuals,
-        from business card to large format prints (A4-A0) according to your needs.
+        Lorem ipsum dolor sit amet consectetur. Non commodo mi elit ut convallis. Tempor facilisi pellentesque sem praesent . Diam volutpat interdum quis senectus.accumsan
       </p>
 
       <div className="absolute top-16 sm:top-20 left-[25%] sm:left-[35%] w-0 h-0 

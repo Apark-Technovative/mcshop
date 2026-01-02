@@ -1,6 +1,9 @@
-import React from "react";
+import React from "react"; 
+import { useNavigate } from "react-router-dom";
 
-export default function AboutUs() {
+export default function AboutUs({ showButton = true }) {
+  const navigate = useNavigate();
+
   return (
     <section className="relative bg-white overflow-hidden min-h-[85vh]">
       
@@ -19,30 +22,36 @@ export default function AboutUs() {
           />
         </div>
 
-        <div className="lg:pl-12">
+        <div className="lg:pl-12 flex flex-col justify-start">
           <p className="text-sm text-gray-500 mb-4">About Us</p>
 
           <h1 className="text-4xl font-bold text-gray-900 leading-tight mb-6">
-            Experience The Power <br />
-            Of Digital Printing
+            Experience The Power Of Digital Printing
           </h1>
 
-          <p className="text-gray-600 text-sm leading-relaxed max-w-md mb-8">
-            We specialize in architectural, structural drawing printing along
-            side large-format prints. Along with technical printing, we offer
-            custom mug, business card and house 3d photo printing with high
-            quality and reliable service.
+          <p className="text-gray-600 text-sm leading-relaxed mb-8">
+            We specialize in architectural and structural drawing printing along
+            with large-format prints for a variety of technical needs. In addition
+            to technical printing, we offer high-quality custom products including
+            mugs, business cards, and 3D house photos. Our goal is to provide
+            reliable service with excellent quality, ensuring your printing
+            projects are handled with care and precision.
           </p>
 
-          <button className="bg-blue-600 text-white px-6 py-3 rounded-md text-sm font-medium 
-            hover:bg-blue-700 transition cursor-pointer">
-            See Detail
-          </button>
-
+          
+          {showButton && (
+            <button
+              onClick={() => navigate("/about")}
+              className="bg-blue-600 text-white px-6 py-3 rounded-md text-sm font-medium 
+              hover:bg-blue-700 transition cursor-pointer w-fit"
+            >
+              See Detail
+            </button>
+          )}
         </div>
+
       </div>
 
-   
       <div className="w-full h-[2px] bg-gray-300 mt-10"></div>
     </section>
   );
