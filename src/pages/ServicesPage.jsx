@@ -1,16 +1,20 @@
 import React from "react";
-import HeroService from "../components/HeroService";
+import Hero from "../components/Hero";
 import DigitalServices from "../components/DigitalServices";
 import Testimonials from "../components/Testimonials";
 
 const ServicesPage = () => {
   return (
     <>
-    
-      <HeroService />
+      <Hero
+        variant="page"
+        title="Services"
+        description="Lorem ipsum dolor sit amet consectetur. Non commodo mi elit ut convallis.
+        Tempor facilisi pellentesque sem praesent tortor venenatis."
+      />
+
       <DigitalServices />
       <Testimonials />
-      
     </>
   );
 };

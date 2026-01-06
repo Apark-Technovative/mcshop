@@ -1,5 +1,5 @@
 import React from "react";
-import AboutHero from "../components/AboutHero";
+import Hero from "../components/Hero";
 import AboutUs from "../components/AboutUs";
 import Why from "../components/Why";
 import AboutWelcome from "../components/AboutWelcome";
@@ -10,8 +10,14 @@ import Testimonials from "../components/Testimonials";
 const About = () => {
   return (
     <>
-      <AboutHero />
-      <AboutUs showButton={false} /> 
+      <Hero
+        variant="page"
+        title="About Us"
+        description="We offer a range of high-quality printing services for business and individuals,
+        from business card to large format prints (A4-A0) according to your needs."
+      />
+
+      <AboutUs showButton={false} />
       <Why />
       <AboutWelcome />
       <CreativeTeam />
