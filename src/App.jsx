@@ -11,6 +11,7 @@ import ServicesPage from "./pages/ServicesPage";
 import Gallery from "./pages/Gallery";
 import PageServiceDetails from "./pages/PageServiceDetails";
 import ContactUsPage from "./pages/ContactUsPage";
+import FaqPage from "./pages/FaqPage";
 
 function App() {
   return (
