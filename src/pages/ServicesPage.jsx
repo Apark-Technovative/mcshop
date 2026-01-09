@@ -5,7 +5,7 @@ import Hero from "../components/Hero";
 import Testimonials from "../components/Testimonials";
 
 const ServicesPage = () => {
-  // -- DigitalServices code --
+
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -48,7 +48,7 @@ const ServicesPage = () => {
 
   return (
     <>
-     {/* -- Hero -- */}
+    
       <Hero
         variant="page"
         title="Services"
@@ -56,7 +56,7 @@ const ServicesPage = () => {
         Tempor facilisi pellentesque sem praesent tortor venenatis."
       />
 
-      {/* -- DigitalServices JSX -- */}
+      
       {loading ? (
         <section className="py-20 text-center text-gray-600">
           Loading services...
@@ -124,7 +124,7 @@ const ServicesPage = () => {
         </section>
       )}
       
-{/* -- Testimonials -- */}
+      
       <Testimonials />
     </>
   );
