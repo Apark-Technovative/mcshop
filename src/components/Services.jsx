@@ -69,7 +69,7 @@ const Services = () => {
               <div
                 key={service._id || index}
                 className={`flex flex-col items-center text-center 
-                  ${index % 2 !== 0 ? "mt-24 md:mt-[180px]" : ""} 
+                  ${index % 2 !== 0 ? "mt-24 md:mt-45" : ""} 
                   w-44 sm:w-52 md:w-60`}
               >
                 {isTopImage ? (
