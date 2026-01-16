@@ -5,6 +5,9 @@ import Hero from "../components/Hero";
 import Testimonials from "../components/Testimonials";
 
 const ServicesPage = () => {
+    useEffect(() => {
+      document.title = "Services | mcshop";
+    }, []);
 
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);

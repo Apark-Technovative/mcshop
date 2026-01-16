@@ -6,6 +6,9 @@ import { FiPhone, FiMail } from "react-icons/fi";
 import { MdLocationOn } from "react-icons/md";
 
 const ContactUsPage = () => {
+   useEffect(() => {
+    document.title = "Contact Us | mcshop";
+  }, []);
   const [formData, setFormData] = useState({
     name: "",
     email: "",

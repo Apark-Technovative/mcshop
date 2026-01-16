@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Hero from "../components/Hero";
 import AboutUs from "../components/AboutUs";
 import Why from "../components/Why";
@@ -8,6 +8,11 @@ import History from "../components/History";
 import Testimonials from "../components/Testimonials";
 
 const About = () => {
+
+  useEffect(() => {
+    document.title = "About Us | mcshop";
+  }, []);
+
   return (
     <>
       <Hero
