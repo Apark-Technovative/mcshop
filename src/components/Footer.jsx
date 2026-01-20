@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   FaPhone,
   FaEnvelope,
@@ -40,6 +41,12 @@ const Footer = () => {
                 Privacy Policy
               </a>
             </li>
+            <li>
+              <Link to="/faq" className="hover:text-green-500 cursor-pointer">
+                FAQ
+              </Link>
+            </li>
+
           </ul>
         </div>
 

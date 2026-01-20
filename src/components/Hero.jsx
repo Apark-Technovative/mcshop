@@ -2,13 +2,13 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 const Hero = ({
-  variant = "home", 
+  variant = "home",
   title,
   description,
 }) => {
   const navigate = useNavigate();
 
-  
+
   if (variant === "home") {
     return (
       <section className="bg-[#f4f3fb] min-h-[calc(100vh-64px)] flex items-center">
@@ -26,10 +26,11 @@ const Hero = ({
 
             <button
               onClick={() => navigate("/services")}
-              className="mt-6 sm:mt-8 bg-blue-600 text-white px-5 sm:px-6 py-2 sm:py-3 rounded-lg hover:bg-blue-700"
+              className="mt-6 sm:mt-8 bg-blue-600 text-white px-5 sm:px-6 py-2 sm:py-3 rounded-lg hover:bg-blue-700 cursor-pointer"
             >
               Get Started
             </button>
+
           </div>
 
           <div className="relative flex justify-center md:justify-end mt-6 md:mt-0">
@@ -54,7 +55,7 @@ const Hero = ({
     );
   }
 
-  
+
   return (
     <section className="relative min-h-[60vh] sm:min-h-[65vh] md:min-h-[70vh] flex flex-col items-center justify-center text-center bg-[#f6f5fb] overflow-hidden px-4 sm:px-6">
 
@@ -66,7 +67,7 @@ const Hero = ({
         {description}
       </p>
 
-     
+
       <div className="absolute top-16 sm:top-20 left-[25%] sm:left-[35%] w-0 h-0 
         border-l-[8px] sm:border-l-[12px] border-r-[8px] sm:border-r-[12px] border-b-[16px] sm:border-b-[20px]
         border-l-transparent border-r-transparent border-b-orange-400" />

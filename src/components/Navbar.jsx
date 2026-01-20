@@ -35,10 +35,11 @@ const Navbar = () => {
 
           <button
             onClick={() => setQuoteOpen(true)}
-            className="hidden md:inline-block bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition"
+            className="hidden md:inline-block bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition cursor-pointer"
           >
             Get a Quote
           </button>
+
 
           <button
             className="md:hidden text-2xl"
@@ -62,10 +63,11 @@ const Navbar = () => {
                   setMenuOpen(false);
                   setQuoteOpen(true);
                 }}
-                className="mt-2 bg-blue-600 text-white text-center px-5 py-2 rounded-lg hover:bg-blue-700"
+                className="mt-2 bg-blue-600 text-white text-center px-5 py-2 rounded-lg hover:bg-blue-700 cursor-pointer"
               >
                 Get a Quote
               </button>
+
             </div>
           </div>
         )}

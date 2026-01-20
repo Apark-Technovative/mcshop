@@ -43,8 +43,7 @@ const Gallery = () => {
       <Hero
         variant="page"
         title="Gallery"
-        description="Lorem ipsum dolor sit amet consectetur. Non commodo mi elit ut convallis.
-        Tempor facilisi pellentesque sem praesent tortor venenatis."
+        description="Explore our gallery to see the quality and variety of work we produce. From engineering drawings and architectural layouts to creative photo prints, business cards, and custom gift items, our gallery showcases real samples of our printing capabilities. Each project represents our commitment to precision, clarity, and customer satisfaction."
       />
 
       <section className="px-6 md:px-20 py-16 bg-gray-100">

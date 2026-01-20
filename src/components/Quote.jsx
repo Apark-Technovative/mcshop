@@ -221,14 +221,14 @@ const Quote = ({ isOpen, onClose }) => {
             />
           </div>
 
-
           <button
             type="submit"
             disabled={loading}
-            className="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 md:col-span-2 w-fit"
+            className="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 cursor-pointer md:col-span-2 w-fit"
           >
             {loading ? "Submitting..." : "Get A Quote"}
           </button>
+
         </form>
       </div>
     </div>

@@ -16,9 +16,8 @@ const PageServiceDetails = () => {
     <>
       <Hero
         variant="page"
-        title="Service Detail"
-        description="Lorem ipsum dolor sit amet consectetur. Non commodo mi elit ut convallis.
-        Tempor facilisi pellentesque sem praesent tortor venenatis."
+        title="Services Detail"
+        description="At Mc-Shop, we offer a wide range of high-quality digital printing services designed to meet personal, commercial, and professional needs. Our services include engineering and architectural printing, large-format prints (A4 to A0), business card design and printing, custom mug printing, photo and poster printing, and personalized gift items. We focus on accuracy, clarity, and fast delivery to ensure every project meets your expectations."
       />
 
       <ProductDetails serviceId={id} />

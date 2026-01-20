@@ -18,8 +18,7 @@ const About = () => {
       <Hero
         variant="page"
         title="About Us"
-        description="We offer a range of high-quality printing services for business and individuals,
-        from business card to large format prints (A4-A0) according to your needs."
+        description="Mc-Shop is your reliable destination for high-quality digital printing. We specialize in engineering and architectural drawings, business cards, custom mugs, photo prints, and large-format outputs from A4 to A0. With modern equipment and a commitment to detail, we ensure every print is clear, accurate, and professionally finished. At Mc-Shop, we focus on fast service and customer satisfaction, bringing your ideas to life with precision."
       />
 
       <AboutUs showButton={false} />

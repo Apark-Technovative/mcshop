@@ -6,7 +6,7 @@ import { FiPhone, FiMail } from "react-icons/fi";
 import { MdLocationOn } from "react-icons/md";
 
 const ContactUsPage = () => {
-   useEffect(() => {
+  useEffect(() => {
     document.title = "Contact Us | mcshop";
   }, []);
   const [formData, setFormData] = useState({
@@ -22,14 +22,14 @@ const ContactUsPage = () => {
   const [success, setSuccess] = useState("");
 
   useEffect(() => {
-  if (success) {
-    const timer = setTimeout(() => {
-      setSuccess("");
-    }, 3000); 
+    if (success) {
+      const timer = setTimeout(() => {
+        setSuccess("");
+      }, 3000);
 
-    return () => clearTimeout(timer);
-  }
-}, [success]);
+      return () => clearTimeout(timer);
+    }
+  }, [success]);
 
 
   const handleChange = (e) => {
@@ -113,20 +113,19 @@ const ContactUsPage = () => {
 
   return (
     <>
-      
-      
+
+
       <Hero
         variant="page"
         title="Contact Us"
-        description="Lorem ipsum dolor sit amet consectetur. Non commodo mi elit ut convallis.
-        Tempor facilisi pellentesque sem praesent."
+        description="Have questions or need assistance with your printing project? We’re here to help. Reach out to us for inquiries, orders, price quotes, or custom requirements. Visit our shop, call us, or send us a message anytime — we aim to respond quickly and provide the best support possible."
       />
 
-      
+
       <div className="max-w-6xl mx-auto px-4 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          
-          
+
+
           <div>
             <h2 className="text-3xl font-semibold mb-8">
               Let’s Get In Touch
@@ -156,9 +155,8 @@ const ContactUsPage = () => {
                     value={formData.name}
                     onChange={handleChange}
                     placeholder="Enter your name"
-                    className={`${inputClass} ${
-                      errors.name ? "border-red-500" : "border-gray-300"
-                    }`}
+                    className={`${inputClass} ${errors.name ? "border-red-500" : "border-gray-300"
+                      }`}
                   />
                   {errors.name && (
                     <p className="text-red-500 text-sm mt-1">{errors.name}</p>
@@ -175,9 +173,8 @@ const ContactUsPage = () => {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="youremail@domain.com"
-                    className={`${inputClass} ${
-                      errors.email ? "border-red-500" : "border-gray-300"
-                    }`}
+                    className={`${inputClass} ${errors.email ? "border-red-500" : "border-gray-300"
+                      }`}
                   />
                   {errors.email && (
                     <p className="text-red-500 text-sm mt-1">{errors.email}</p>
@@ -196,9 +193,8 @@ const ContactUsPage = () => {
                     value={formData.phone}
                     onChange={handleChange}
                     placeholder="+977 98XXXXXXXX"
-                    className={`${inputClass} ${
-                      errors.phone ? "border-red-500" : "border-gray-300"
-                    }`}
+                    className={`${inputClass} ${errors.phone ? "border-red-500" : "border-gray-300"
+                      }`}
                   />
                   {errors.phone && (
                     <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
@@ -228,9 +224,8 @@ const ContactUsPage = () => {
                   value={formData.message}
                   onChange={handleChange}
                   placeholder="Enter your message"
-                  className={`${inputClass} ${
-                    errors.message ? "border-red-500" : "border-gray-300"
-                  }`}
+                  className={`${inputClass} ${errors.message ? "border-red-500" : "border-gray-300"
+                    }`}
                 />
                 {errors.message && (
                   <p className="text-red-500 text-sm mt-1">{errors.message}</p>
@@ -241,18 +236,18 @@ const ContactUsPage = () => {
                 type="submit"
                 disabled={loading}
                 className={`bg-blue-600 text-white px-6 py-2 rounded-md transition
-                ${
-                  loading
+    ${loading
                     ? "opacity-60 cursor-not-allowed"
-                    : "hover:bg-blue-700"
-                }`}
+                    : "hover:bg-blue-700 cursor-pointer"
+                  }`}
               >
                 {loading ? "Sending..." : "Send Message"}
               </button>
+
             </form>
           </div>
 
-          
+
           <div className="bg-gray-100 rounded-lg p-8">
             <h2 className="text-2xl font-semibold text-center mb-4">
               Need More Help?
@@ -283,7 +278,7 @@ const ContactUsPage = () => {
         </div>
       </div>
 
-      
+
       <section className="w-full bg-white py-12">
         <div className="flex justify-center mb-6">
           <h1 className="text-3xl font-bold text-center">Map</h1>
@@ -300,7 +295,7 @@ const ContactUsPage = () => {
         </div>
       </section>
 
-      
+
       <Testimonials />
     </>
   );
