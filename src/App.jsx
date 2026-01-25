@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
+import Chat from "./components/Chat";
+import ChatButton from "./components/ChatButton";
 
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -14,6 +16,12 @@ import ContactUsPage from "./pages/ContactUsPage";
 import FaqPage from "./pages/FaqPage";
 
 function App() {
+  const [isChatOpen, setIsChatOpen] = useState(false);
+
+  const toggleChat = () => {
+    setIsChatOpen(!isChatOpen);
+  };
+
   return (
     <>
       <Navbar />
@@ -27,10 +35,13 @@ function App() {
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/services/:id" element={<PageServiceDetails />} />
         <Route path="/contact" element={<ContactUsPage />} />
-        <Route path="/faq" element={<FaqPage />} />
       </Routes>
 
       <Footer />
+
+
+      <Chat isOpen={isChatOpen} onClose={toggleChat} />
+      <ChatButton onClick={toggleChat} />
     </>
   );
 }
