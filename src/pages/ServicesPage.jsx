@@ -5,6 +5,9 @@ import Hero from "../components/Hero";
 import Testimonials from "../components/Testimonials";
 
 const ServicesPage = () => {
+  useEffect(() => {
+    document.title = "Services | mcshop";
+  }, []);
 
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -44,19 +47,18 @@ const ServicesPage = () => {
     setCurrentPage(page);
     sectionRef.current?.scrollIntoView({ behavior: "smooth" });
   };
-  
+
 
   return (
     <>
-    
+
       <Hero
         variant="page"
         title="Services"
-        description="Lorem ipsum dolor sit amet consectetur. Non commodo mi elit ut convallis.
-        Tempor facilisi pellentesque sem praesent tortor venenatis."
+        description="At Mc-Shop, we offer a wide range of high-quality digital printing services designed to meet personal, commercial, and professional needs. Our services include engineering and architectural printing, large-format prints (A4 to A0), business card design and printing, custom mug printing, photo and poster printing, and personalized gift items. We focus on accuracy, clarity, and fast delivery to ensure every project meets your expectations."
       />
 
-      
+
       {loading ? (
         <section className="py-20 text-center text-gray-600">
           Loading services...
@@ -81,9 +83,8 @@ const ServicesPage = () => {
               {currentServices.map((service, index) => (
                 <div
                   key={service._id}
-                  className={`flex flex-col md:flex-row items-center gap-8 ${
-                    index % 2 !== 0 ? "md:flex-row-reverse" : ""
-                  }`}
+                  className={`flex flex-col md:flex-row items-center gap-8 ${index % 2 !== 0 ? "md:flex-row-reverse" : ""
+                    }`}
                 >
                   <img
                     src={`${import.meta.env.VITE_API_BASE_URL}/uploads/${service.images?.[0]}`}
@@ -110,11 +111,10 @@ const ServicesPage = () => {
                 <button
                   key={i}
                   onClick={() => handlePageChange(i + 1)}
-                  className={`px-4 py-2 rounded-lg transition cursor-pointer ${
-                    currentPage === i + 1
+                  className={`px-4 py-2 rounded-lg transition cursor-pointer ${currentPage === i + 1
                       ? "bg-blue-600 text-white"
                       : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-                  }`}
+                    }`}
                 >
                   {i + 1}
                 </button>
@@ -123,8 +123,8 @@ const ServicesPage = () => {
           </div>
         </section>
       )}
-      
-      
+
+
       <Testimonials />
     </>
   );

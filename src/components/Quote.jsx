@@ -74,7 +74,7 @@ const Quote = ({ isOpen, onClose }) => {
       alert("Quote request submitted successfully");
       onClose();
 
-      
+
       setFormData({
         name: "",
         email: "",
@@ -88,7 +88,7 @@ const Quote = ({ isOpen, onClose }) => {
       console.error("Backend error:", error.response?.data);
       alert(
         error.response?.data?.message ||
-          "Server error. Please try again later."
+        "Server error. Please try again later."
       );
     } finally {
       setLoading(false);
@@ -99,7 +99,7 @@ const Quote = ({ isOpen, onClose }) => {
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
       <div className="bg-white w-full max-w-4xl rounded-lg p-6 relative">
 
-       
+
         <button
           onClick={onClose}
           className="absolute top-4 right-4 text-red-600 text-2xl"
@@ -113,7 +113,7 @@ const Quote = ({ isOpen, onClose }) => {
           onSubmit={handleSubmit}
           className="grid grid-cols-1 md:grid-cols-2 gap-6"
         >
-          
+
           <div className="flex flex-col gap-1">
             <label className="text-sm font-medium">
               Name <span className="text-red-500">*</span>
@@ -129,7 +129,7 @@ const Quote = ({ isOpen, onClose }) => {
             />
           </div>
 
-          
+
           <div className="flex flex-col gap-1">
             <label className="text-sm font-medium">
               Email <span className="text-red-500">*</span>
@@ -145,7 +145,7 @@ const Quote = ({ isOpen, onClose }) => {
             />
           </div>
 
-          
+
           <div className="flex flex-col gap-1">
             <label className="text-sm font-medium">
               Phone <span className="text-red-500">*</span>
@@ -161,7 +161,7 @@ const Quote = ({ isOpen, onClose }) => {
             />
           </div>
 
-          
+
           <div className="flex flex-col gap-1">
             <label className="text-sm font-medium">
               Service Type <span className="text-red-500">*</span>
@@ -185,7 +185,7 @@ const Quote = ({ isOpen, onClose }) => {
             </select>
           </div>
 
-          
+
           <div className="flex flex-col gap-1">
             <label className="text-sm font-medium">Quantity</label>
             <input
@@ -198,18 +198,17 @@ const Quote = ({ isOpen, onClose }) => {
             />
           </div>
 
-          
           <div className="flex flex-col gap-1">
             <label className="text-sm font-medium">Upload Design</label>
             <input
               type="file"
-              accept=".pdf,.jpg,.png"
+              accept=".pdf,.jpg,.jpeg,.png,.tif,.tiff,.bmp,.webp"
               onChange={(e) => setFile(e.target.files[0])}
               className="border p-3 rounded"
             />
           </div>
 
-          
+
           <div className="flex flex-col gap-1 md:col-span-2">
             <label className="text-sm font-medium">Message</label>
             <textarea
@@ -222,14 +221,14 @@ const Quote = ({ isOpen, onClose }) => {
             />
           </div>
 
-          
           <button
             type="submit"
             disabled={loading}
-            className="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 md:col-span-2 w-fit"
+            className="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 cursor-pointer md:col-span-2 w-fit"
           >
             {loading ? "Submitting..." : "Get A Quote"}
           </button>
+
         </form>
       </div>
     </div>
