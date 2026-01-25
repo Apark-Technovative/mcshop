@@ -1,13 +1,11 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Hero = ({
   variant = "home",
   title,
   description,
 }) => {
-  const navigate = useNavigate();
-
 
   if (variant === "home") {
     return (
@@ -24,13 +22,12 @@ const Hero = ({
               Fine and Reliable Service
             </p>
 
-            <button
-              onClick={() => navigate("/services")}
-              className="mt-6 sm:mt-8 bg-blue-600 text-white px-5 sm:px-6 py-2 sm:py-3 rounded-lg hover:bg-blue-700 cursor-pointer"
+            <Link
+              to="/services"
+              className="inline-block mt-6 sm:mt-8 bg-blue-600 text-white px-5 sm:px-6 py-2 sm:py-3 rounded-lg hover:bg-blue-700 cursor-pointer"
             >
               Get Started
-            </button>
-
+            </Link>
           </div>
 
           <div className="relative flex justify-center md:justify-end mt-6 md:mt-0">
@@ -55,7 +52,6 @@ const Hero = ({
     );
   }
 
-
   return (
     <section className="relative min-h-[60vh] sm:min-h-[65vh] md:min-h-[70vh] flex flex-col items-center justify-center text-center bg-[#f6f5fb] overflow-hidden px-4 sm:px-6">
 
@@ -66,7 +62,6 @@ const Hero = ({
       <p className="max-w-xs sm:max-w-md md:max-w-xl text-xs sm:text-sm text-gray-600 leading-relaxed">
         {description}
       </p>
-
 
       <div className="absolute top-16 sm:top-20 left-[25%] sm:left-[35%] w-0 h-0 
         border-l-[8px] sm:border-l-[12px] border-r-[8px] sm:border-r-[12px] border-b-[16px] sm:border-b-[20px]
@@ -92,6 +87,3 @@ const Hero = ({
 };
 
 export default Hero;
-
-
-

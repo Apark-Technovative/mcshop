@@ -99,13 +99,12 @@ const Quote = ({ isOpen, onClose }) => {
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
       <div className="bg-white w-full max-w-4xl rounded-lg p-6 relative">
 
-
         <button
-          onClick={onClose}
-          className="absolute top-4 right-4 text-red-600 text-2xl"
-        >
-          <FiX />
-        </button>
+  onClick={onClose}
+  className="absolute top-4 right-4 text-red-600 text-2xl cursor-pointer"
+>
+  <FiX />
+</button>
 
         <h2 className="text-2xl font-semibold mb-6">Request A Quote</h2>
 
@@ -113,7 +112,6 @@ const Quote = ({ isOpen, onClose }) => {
           onSubmit={handleSubmit}
           className="grid grid-cols-1 md:grid-cols-2 gap-6"
         >
-
           <div className="flex flex-col gap-1">
             <label className="text-sm font-medium">
               Name <span className="text-red-500">*</span>
@@ -128,7 +126,6 @@ const Quote = ({ isOpen, onClose }) => {
               placeholder="Enter your name"
             />
           </div>
-
 
           <div className="flex flex-col gap-1">
             <label className="text-sm font-medium">
@@ -145,7 +142,6 @@ const Quote = ({ isOpen, onClose }) => {
             />
           </div>
 
-
           <div className="flex flex-col gap-1">
             <label className="text-sm font-medium">
               Phone <span className="text-red-500">*</span>
@@ -160,7 +156,6 @@ const Quote = ({ isOpen, onClose }) => {
               placeholder="Enter your phone number"
             />
           </div>
-
 
           <div className="flex flex-col gap-1">
             <label className="text-sm font-medium">
@@ -185,7 +180,6 @@ const Quote = ({ isOpen, onClose }) => {
             </select>
           </div>
 
-
           <div className="flex flex-col gap-1">
             <label className="text-sm font-medium">Quantity</label>
             <input
@@ -207,7 +201,6 @@ const Quote = ({ isOpen, onClose }) => {
               className="border p-3 rounded"
             />
           </div>
-
 
           <div className="flex flex-col gap-1 md:col-span-2">
             <label className="text-sm font-medium">Message</label>
