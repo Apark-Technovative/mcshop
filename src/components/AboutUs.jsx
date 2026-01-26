@@ -49,7 +49,7 @@ export default function AboutUs({ showButton = true }) {
 
       </div>
 
-      <div className="w-full h-[2px] bg-gray-300 mt-10"></div>
+      <div className="w-full h-0.5 bg-gray-300 mt-10"></div>
     </section>
   );
 }

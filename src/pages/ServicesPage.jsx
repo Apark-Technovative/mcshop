@@ -70,7 +70,7 @@ const ServicesPage = () => {
           No services available.
         </section>
       ) : (
-        <section ref={sectionRef} className="bg-gray-100 py-16">
+        <section ref={sectionRef} className="bg-white py-16">
           <div className="max-w-7xl mx-auto px-6">
             <h2 className="text-center mb-12">
               <p className="text-sm text-gray-500 mb-2">Services</p>
@@ -89,7 +89,7 @@ const ServicesPage = () => {
                   <img
                     src={`${import.meta.env.VITE_API_BASE_URL}/uploads/${service.images?.[0]}`}
                     alt={service.title}
-                    className="w-full md:w-1/2 h-80 md:h-[28rem] object-cover rounded-lg shadow-md transition-transform duration-300 hover:scale-105"
+                    className="w-full md:w-1/2 h-80 md:h-112 object-cover rounded-lg shadow-md transition-transform duration-300 hover:scale-105"
                   />
 
                   <div className="md:w-1/2 flex flex-col">
@@ -112,8 +112,8 @@ const ServicesPage = () => {
                   key={i}
                   onClick={() => handlePageChange(i + 1)}
                   className={`px-4 py-2 rounded-lg transition cursor-pointer ${currentPage === i + 1
-                      ? "bg-blue-600 text-white"
-                      : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                    ? "bg-blue-600 text-white"
+                    : "bg-gray-200 text-gray-700 hover:bg-gray-300"
                     }`}
                 >
                   {i + 1}

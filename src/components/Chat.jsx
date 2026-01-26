@@ -26,6 +26,7 @@ const Chat = ({ isOpen, onClose }) => {
         localStorage.setItem('guestId', newGuestId);
         return newGuestId;
     });
+    const [socketConnected, setSocketConnected] = useState(false);
     const messagesEndRef = useRef(null);
     const socket = useRef(null);
     const typingTimeoutRef = useRef(null);
@@ -59,7 +60,17 @@ const Chat = ({ isOpen, onClose }) => {
             // Restore conversation from localStorage on connection
             socket.current.on('connect', async () => {
                 console.log('✅ Socket.IO connected:', socket.current.id);
+                setSocketConnected(true);
                 await restoreConversationFromStorage();
+            });
+
+            socket.current.on('disconnect', (reason) => {
+                console.log('🔌 Socket.IO disconnected:', reason);
+                setSocketConnected(false);
+            });
+
+            socket.current.on('error', (error) => {
+                console.error('❌ Socket.IO error:', error);
             });
 
             // Listen for incoming messages from admin
@@ -204,14 +215,6 @@ const Chat = ({ isOpen, onClose }) => {
                 });
             });
 
-            socket.current.on('error', (error) => {
-                console.error('❌ Socket.IO error:', error);
-            });
-
-            socket.current.on('disconnect', (reason) => {
-                console.log('🔌 Socket.IO disconnected:', reason);
-            });
-
             return () => {
                 if (socket.current) {
                     socket.current.disconnect();
@@ -222,9 +225,9 @@ const Chat = ({ isOpen, onClose }) => {
         }
     }, []);
 
-    // Join conversation room when conversationId is available
+    // Join conversation room when conversationId is available and socket is ready
     useEffect(() => {
-        if (conversationId && isOpen && socket.current) {
+        if (conversationId && isOpen && socket.current && socketConnected) {
             console.log('📤 Joining conversation:', conversationId);
             socket.current.emit('guest:join', {
                 conversationId,
@@ -232,7 +235,7 @@ const Chat = ({ isOpen, onClose }) => {
                 guestName: userName
             });
         }
-    }, [conversationId, isOpen, guestId, userName]);
+    }, [conversationId, isOpen, guestId, userName, socketConnected]);
 
     // Restore chat session on page load
     useEffect(() => {
@@ -303,7 +306,7 @@ const Chat = ({ isOpen, onClose }) => {
         if (userName.trim() && userEmail.trim() && userPhone.trim()) {
             setIsLoading(true);
             try {
-                // Start session with backend controller shape
+                // Start session with backend controller
                 const response = await axiosInstance.post('/api/chat/start', {
                     name: userName,
                     email: userEmail,
@@ -311,10 +314,11 @@ const Chat = ({ isOpen, onClose }) => {
                 });
 
                 const conv = response?.data?.conversation;
-                if (conv?.conversationId) {
-                    setConversationId(conv.conversationId);
+                if (conv?._id || conv?.conversationId) {
+                    const convId = conv._id || conv.conversationId;
+                    setConversationId(convId);
                     // Persist conversation ID and user details to localStorage
-                    localStorage.setItem('conversationId', conv.conversationId);
+                    localStorage.setItem('conversationId', convId);
                     localStorage.setItem('userName', userName);
                     localStorage.setItem('userEmail', userEmail);
                     localStorage.setItem('userPhone', userPhone);
@@ -323,15 +327,21 @@ const Chat = ({ isOpen, onClose }) => {
                     }
                     setShowForm(false);
 
-                    // Emit guest:join event immediately after starting chat
-                    if (socket.current && socket.current.connected) {
-                        console.log('📤 Joining new conversation:', conv.conversationId);
-                        socket.current.emit('guest:join', {
-                            conversationId: conv.conversationId,
-                            guestId: conv.guestId || guestId,
-                            guestName: userName
-                        });
-                    }
+                    // Wait for socket to be ready, then emit guest:join
+                    const waitForSocket = setInterval(() => {
+                        if (socket.current && socketConnected) {
+                            clearInterval(waitForSocket);
+                            console.log('📤 Joining new conversation:', convId);
+                            socket.current.emit('guest:join', {
+                                conversationId: convId,
+                                guestId: conv.guestId || guestId,
+                                guestName: userName
+                            });
+                        }
+                    }, 100);
+
+                    // Timeout after 5 seconds
+                    setTimeout(() => clearInterval(waitForSocket), 5000);
 
                     // Fetch existing messages for this conversation
                     try {
@@ -368,7 +378,7 @@ const Chat = ({ isOpen, onClose }) => {
         if (!inputMessage.trim() || !conversationId) return;
 
         // Stop typing indicator when sending
-        if (socket.current && socket.current.connected) {
+        if (socket.current && socketConnected) {
             socket.current.emit('typing:stop', { conversationId });
         }
         if (guestTypingTimeoutRef.current) {
@@ -380,9 +390,9 @@ const Chat = ({ isOpen, onClose }) => {
         setIsLoading(true);
 
         try {
-            // Try Socket.IO first (realtime)
-            if (socket.current && socket.current.connected) {
-                console.log('Sending message via Socket.IO');
+            // Use Socket.IO for sending (primary method)
+            if (socket.current && socketConnected) {
+                console.log('📤 Sending message via Socket.IO');
                 socket.current.emit('message:send', {
                     conversationId,
                     message: messageText,
@@ -392,8 +402,8 @@ const Chat = ({ isOpen, onClose }) => {
                 });
             } else {
                 // Fallback to REST API if Socket.IO not connected
-                console.log('Socket not connected, using REST API');
-                await axiosInstance.post(`/api/chat/${conversationId}/message`, {
+                console.log('⚠️ Socket not connected, using REST API');
+                await axiosInstance.post(`/api/chat/message`, {
                     conversationId,
                     message: messageText,
                     senderType: 'guest',
@@ -413,7 +423,7 @@ const Chat = ({ isOpen, onClose }) => {
         setInputMessage(e.target.value);
 
         // Only emit typing events if socket is connected
-        if (!socket.current || !socket.current.connected || !conversationId) return;
+        if (!socket.current || !socketConnected || !conversationId) return;
 
         // Clear existing timeout
         if (guestTypingTimeoutRef.current) {
@@ -436,15 +446,20 @@ const Chat = ({ isOpen, onClose }) => {
         }
     };
 
+    // Minimize chat without ending the session
+    const handleMinimize = () => {
+        if (onClose) onClose();
+    };
+
     const handleCloseChat = async () => {
-        if (socket.current && socket.current.connected) {
+        if (socket.current && socketConnected) {
             socket.current.emit('chat:end', { conversationId, closedBy: 'guest' });
         }
 
         // Inform REST controller to close session
         if (conversationId) {
             try {
-                await axiosInstance.post(`/api/chat/${conversationId}/end`, { closedBy: 'guest' });
+                await axiosInstance.put(`/api/chat/${conversationId}/end`, { closedBy: 'guest' });
             } catch (e) {
                 console.warn('Failed to end chat via REST:', e?.message || e);
             }
@@ -484,7 +499,7 @@ const Chat = ({ isOpen, onClose }) => {
     if (!isOpen) return null;
 
     return (
-        <div className="fixed bottom-[90px] right-5 w-[380px] h-[550px] bg-white rounded-2xl shadow-2xl flex flex-col z-[1000] animate-slideUp max-md:w-[calc(100%-40px)] max-md:h-[calc(100vh-120px)] max-md:max-h-[600px] max-sm:w-full max-sm:h-screen max-sm:bottom-0 max-sm:right-0 max-sm:rounded-none">
+        <div className="fixed bottom-22.5 right-5 w-95 h-137.5 bg-white rounded-2xl shadow-2xl flex flex-col z-1000 animate-slideUp max-md:w-[calc(100%-40px)] max-md:h-[calc(100vh-120px)] max-md:max-h-150 max-sm:w-full max-sm:h-screen max-sm:bottom-0 max-sm:right-0 max-sm:rounded-none">
             {/* Header */}
             <div className="bg-linear-to-br from-indigo-600 to-purple-600 text-white p-5 rounded-t-2xl flex justify-between items-center max-sm:rounded-none">
                 <div>
@@ -493,7 +508,7 @@ const Chat = ({ isOpen, onClose }) => {
                 </div>
                 <button
                     className="bg-white/20 border-0 text-white w-8 h-8 rounded-full cursor-pointer text-xl flex items-center justify-center hover:bg-white/30 transition-colors"
-                    onClick={handleCloseChat}
+                    onClick={handleMinimize}
                 >
                     ✕
                 </button>

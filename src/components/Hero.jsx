@@ -9,16 +9,16 @@ const Hero = ({
 
   if (variant === "home") {
     return (
-      <section className="bg-[#f4f3fb] min-h-[calc(100vh-64px)] flex items-center">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center w-full">
+      <section className="bg-[#f4f3fb] min-h-[50vh] py-8 md:py-12 flex items-center">
+        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center w-full">
 
           <div className="text-center md:text-left">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 leading-snug">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
               Your Printing Solution <br />
               at your <span className="text-green-500">Fingertips</span>
             </h1>
 
-            <p className="mt-4 sm:mt-6 text-base sm:text-lg font-medium text-gray-700">
+            <p className="mt-2 sm:mt-3 text-sm sm:text-base font-medium text-gray-700">
               Fine and Reliable Service
             </p>
 
@@ -34,16 +34,16 @@ const Hero = ({
             <img
               src="/images/cad-drawing.jpg"
               alt="CAD Drawing"
-              className="rounded-lg shadow-lg w-64 sm:w-96 md:w-[650px] h-64 sm:h-96 md:h-[600px] object-cover transition-transform duration-300 hover:scale-105"
+              className="rounded-lg shadow-lg w-56 sm:w-72 md:w-100 h-56 sm:h-72 md:h-95 object-cover transition-transform duration-300 hover:scale-105"
             />
 
-            <div className="hidden md:block absolute bottom-10 left-[-20px] w-8 h-8 border-2 border-orange-400 rounded-full"></div>
+            <div className="hidden md:block absolute bottom-10 -left-5 w-8 h-8 border-2 border-orange-400 rounded-full"></div>
 
             <div
-              className="hidden md:block absolute top-16 right-[-20px] w-0 h-0 
-              border-l-[14px] border-l-transparent
-              border-b-[24px] border-b-green-500
-              border-r-[14px] border-r-transparent"
+              className="hidden md:block absolute top-16 -right-5 w-0 h-0 
+              border-l-14 border-l-transparent
+              border-b-24 border-b-green-500
+              border-r-14 border-r-transparent"
             ></div>
           </div>
 
@@ -53,19 +53,18 @@ const Hero = ({
   }
 
   return (
-    <section className="relative min-h-[60vh] sm:min-h-[65vh] md:min-h-[70vh] flex flex-col items-center justify-center text-center bg-[#f6f5fb] overflow-hidden px-4 sm:px-6">
+    <section className="relative min-h-[45vh] sm:min-h-[48vh] md:min-h-[50vh] py-6 md:py-8 flex flex-col items-center justify-center text-center bg-[#f6f5fb] overflow-hidden px-4 sm:px-6">
 
-      <h1 className="text-3xl sm:text-4xl font-bold mb-4 sm:mb-5 text-black">
+      <h1 className="text-2xl sm:text-3xl font-bold mb-2 sm:mb-3 text-black">
         {title}
       </h1>
 
-      <p className="max-w-xs sm:max-w-md md:max-w-xl text-xs sm:text-sm text-gray-600 leading-relaxed">
+      <p className="max-w-xs sm:max-w-md md:max-w-lg text-xs sm:text-sm text-gray-600 leading-relaxed">
         {description}
       </p>
 
       <div className="absolute top-16 sm:top-20 left-[25%] sm:left-[35%] w-0 h-0 
-        border-l-[8px] sm:border-l-[12px] border-r-[8px] sm:border-r-[12px] border-b-[16px] sm:border-b-[20px]
-        border-l-transparent border-r-transparent border-b-orange-400" />
+        border-l-8 border-l-transparent border-r-8 border-r-transparent border-b-16 sm:border-b-20 border-b-orange-400" />
 
       <div className="absolute top-20 sm:top-24 right-[25%] sm:right-[35%] w-4 sm:w-5 h-4 sm:h-5 
         border-4 border-green-500 rounded-full" />
