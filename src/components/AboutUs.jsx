@@ -1,9 +1,7 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function AboutUs({ showButton = true }) {
-  const navigate = useNavigate();
-
   return (
     <section className="relative bg-white overflow-hidden min-h-[85vh]">
 
@@ -38,15 +36,14 @@ export default function AboutUs({ showButton = true }) {
             projects are handled with care and precision.
           </p>
 
-
           {showButton && (
-            <button
-              onClick={() => navigate("/about")}
-              className="bg-blue-600 text-white px-6 py-3 rounded-md text-sm font-medium 
+            <Link
+              to="/about"
+              className="inline-block bg-blue-600 text-white px-6 py-3 rounded-md text-sm font-medium 
               hover:bg-blue-700 transition cursor-pointer w-fit"
             >
               See Detail
-            </button>
+            </Link>
           )}
         </div>
 

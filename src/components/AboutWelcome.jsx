@@ -20,12 +20,8 @@ const AboutWelcome = () => {
           </h1>
 
           <p className="text-gray-600 mb-6 leading-relaxed">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.  
-            Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.  
-            Nisi ut aliquip ex ea commodo consequat duis aute irure dolor.  
-            In reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla.  
-            Excepteur sint occaecat cupidatat non proident sunt in culpa.
+          I warmly welcome you to our digital printing family. Our mission has always been to provide fine, reliable, and high-quality printing services that truly meet your needs. Whether it’s engineering drawings, architectural prints, business cards, personalized gifts, or creative 3D house photos, we are committed to delivering precision, clarity, and satisfaction in every project.
+         <br></br>At Mc-Shop, we believe in blending modern printing technology with dedicated customer service. Your ideas matter to us, and we work closely with you to turn them into beautifully printed reality. Thank you for trusting us — we look forward to serving you with excellence.
           </p>
 
           <p className="font-semibold text-gray-800">

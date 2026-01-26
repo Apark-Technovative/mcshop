@@ -4,9 +4,10 @@ import Testimonials from "../components/Testimonials";
 import axiosInstance from "../utils/axios";
 
 const Gallery = () => {
-    useEffect(() => {
-      document.title = "Gallery | mcshop";
-    }, []);
+  useEffect(() => {
+    document.title = "Gallery | mcshop";
+  }, []);
+
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -16,13 +17,12 @@ const Gallery = () => {
       try {
         const res = await axiosInstance.get("/api/getAllGalleries");
 
-        console.log("Gallery API response:", res.data);
-
         const galleries = res.data?.data || [];
 
-        const allImages = galleries.flatMap(item =>
-          (item.images || []).map(
-            img => `${import.meta.env.VITE_API_BASE_URL}/public/uploads/${img}`
+        const allImages = galleries.flatMap(gallery =>
+          (gallery.images || []).map(
+            img =>
+              `${import.meta.env.VITE_API_BASE_URL}/uploads/${img}`
           )
         );
 
@@ -40,6 +40,7 @@ const Gallery = () => {
 
   return (
     <>
+
       <Hero
         variant="page"
         title="Gallery"
@@ -63,7 +64,7 @@ const Gallery = () => {
           </p>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
-          
+  
             <div className="md:col-span-5 row-span-2">
               <img
                 src={images[0]}
@@ -72,42 +73,26 @@ const Gallery = () => {
               />
             </div>
 
-         
             <div className="md:col-span-4 flex flex-col gap-4">
-              <img
-                src={images[1]}
-                alt="Gallery"
-                className="w-full h-1/3 object-cover rounded-lg"
-              />
-              <img
-                src={images[2]}
-                alt="Gallery"
-                className="w-full h-1/3 object-cover rounded-lg"
-              />
-              <img
-                src={images[5]}
-                alt="Gallery"
-                className="w-full h-1/3 object-cover rounded-lg"
-              />
+              {[1, 2, 5].map(index => (
+                <img
+                  key={index}
+                  src={images[index]}
+                  alt="Gallery"
+                  className="w-full h-1/3 object-cover rounded-lg"
+                />
+              ))}
             </div>
 
-            
             <div className="md:col-span-3 flex flex-col gap-4">
-              <img
-                src={images[3]}
-                alt="Gallery"
-                className="w-full h-1/3 object-cover rounded-lg"
-              />
-              <img
-                src={images[4]}
-                alt="Gallery"
-                className="w-full h-1/3 object-cover rounded-lg"
-              />
-              <img
-                src={images[6]}
-                alt="Gallery"
-                className="w-full h-1/3 object-cover rounded-lg"
-              />
+              {[3, 4, 6].map(index => (
+                <img
+                  key={index}
+                  src={images[index]}
+                  alt="Gallery"
+                  className="w-full h-1/3 object-cover rounded-lg"
+                />
+              ))}
             </div>
           </div>
         )}
