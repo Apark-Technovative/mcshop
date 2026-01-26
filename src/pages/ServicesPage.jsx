@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../utils/axios";
 import Hero from "../components/Hero";
@@ -95,12 +96,13 @@ const ServicesPage = () => {
                   <div className="md:w-1/2 flex flex-col">
                     <h3 className="text-xl font-semibold mb-4">{service.title}</h3>
                     <p className="text-gray-600 mb-6">{service.description}</p>
-                    <button
-                      onClick={() => navigate(`/services/${service._id}`)}
-                      className="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition cursor-pointer"
+                    <Link
+                      to={`/services/${service._id}`}
+                      className="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition cursor-pointer inline-block text-center"
                     >
                       See Detail
-                    </button>
+                    </Link>
+
                   </div>
                 </div>
               ))}
@@ -123,7 +125,6 @@ const ServicesPage = () => {
           </div>
         </section>
       )}
-
 
       <Testimonials />
     </>

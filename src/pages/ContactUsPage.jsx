@@ -247,8 +247,7 @@ const ContactUsPage = () => {
             </form>
           </div>
 
-
-          <div className="bg-gray-100 rounded-lg p-8">
+          <div className="bg-gray-100 rounded-lg p-8 relative overflow-hidden">
             <h2 className="text-2xl font-semibold text-center mb-4">
               Need More Help?
             </h2>
@@ -258,7 +257,7 @@ const ContactUsPage = () => {
               convallis. Tempor facilisis pellentesque sem praesent tortor.
             </p>
 
-            <div className="space-y-4 text-sm">
+            <div className="space-y-4 text-sm relative z-10">
               <div className="flex items-center gap-3">
                 <FiPhone />
                 <span>+977-9851082739</span>
@@ -274,10 +273,34 @@ const ContactUsPage = () => {
                 <span>Dyabu Marg, Galkopakhā, Kathmandu</span>
               </div>
             </div>
+
+            <span className="absolute top-1/3 right-12 w-8 h-8 border-2 border-yellow-400 rotate-45"></span>
+            <span className="absolute top-2/3 left-1/2 w-6 h-6 border-2 border-pink-400 rounded-full"></span>
+            <span className="absolute bottom-4 left-8 w-8 h-8 border-2 border-orange-400 rotate-45"></span>
+            <span className="absolute bottom-2 -left-2 w-4 h-4 border-2 border-green-500 rounded-full"></span>
+            <span className="absolute bottom-4 right-6 w-6 h-6 border-2 border-orange-400 rounded-full"></span>
+            <span className="absolute bottom-3 -right-4 w-3 h-3 border-2 border-indigo-400 rounded-full"></span>
+            <span
+              className="absolute bottom-4 left-1/2 w-0 h-0"
+              style={{
+                borderLeft: "12px solid transparent",
+                borderRight: "12px solid transparent",
+                borderBottom: "18px solid #6366F1",
+                transform: "translateX(-50%)",
+              }}
+            ></span>
+            <span
+              className="absolute bottom-3 left-32 w-0 h-0"
+              style={{
+                borderLeft: "5px solid transparent",
+                borderRight: "5px solid transparent",
+                borderBottom: "8px solid #10B981",
+                transform: "rotate(10deg)"
+              }}
+            ></span>
           </div>
         </div>
       </div>
-
 
       <section className="w-full bg-white py-12">
         <div className="flex justify-center mb-6">
@@ -294,7 +317,6 @@ const ContactUsPage = () => {
           ></iframe>
         </div>
       </section>
-
 
       <Testimonials />
     </>
