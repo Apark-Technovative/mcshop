@@ -19,24 +19,15 @@ const Gallery = () => {
         const galleries = res.data?.data || [];
 
         const allImages = galleries.flatMap((g) =>
-          (g.images || []).map((img) => {
-            if (typeof img === "string") {
-              return {
-                src: `${import.meta.env.VITE_API_BASE_URL}/uploads/${img}`,
-                title: "Gallery Image",
-              };
-            }
-
-            return {
-              src: `${import.meta.env.VITE_API_BASE_URL}/uploads/${img.file}`,
-              title: img.title || "Gallery Image",
-            };
-          })
+          (g.images || []).map((img) => ({
+            src: `${import.meta.env.VITE_API_BASE_URL}/uploads/${typeof img === "string" ? img : img.file
+              }`,
+            title: img.title || "Gallery Image",
+          }))
         );
 
         setImages(allImages);
       } catch (err) {
-        console.error("Gallery fetch failed:", err);
         setError(true);
       } finally {
         setLoading(false);
@@ -50,7 +41,7 @@ const Gallery = () => {
     return <p className="text-center py-20">Loading gallery...</p>;
   }
 
-  if (error || images.length < 7) {
+  if (error || images.length < 8) {
     return (
       <p className="text-center py-20 text-red-500">
         Failed to load gallery
@@ -66,25 +57,9 @@ const Gallery = () => {
         className="w-full h-full object-cover"
         loading="lazy"
       />
-
-      <div
-        className="
-          absolute inset-0
-          bg-black/60
-          translate-y-full
-          opacity-0
-          group-hover:translate-y-0
-          group-hover:opacity-100
-          transition-all
-          duration-700
-          ease-in-out
-          flex items-end
-        "
-      >
+      <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex items-end">
         <div className="p-4">
-          <h3 className="text-white text-lg font-semibold">
-            {image.title}
-          </h3>
+          <h3 className="text-white text-lg font-semibold">{image.title}</h3>
         </div>
       </div>
     </div>
@@ -98,41 +73,62 @@ const Gallery = () => {
         description="Explore our gallery to see the quality and variety of work we produce. From engineering drawings and architectural layouts to creative photo prints, business cards, and custom gift items, our gallery showcases real samples of our printing capabilities. Each project represents our commitment to precision, clarity, and customer satisfaction."
       />
 
-      <section className="px-6 md:px-20 py-16 bg-gray-100">
-        <p className="text-center text-sm text-gray-600 mb-2">
-          Gallery
-        </p>
+      <section className="px-6 md:px-20 py-16 bg-gray-100 overflow-x-hidden">
+        <p className="text-center text-sm text-gray-600 mb-2">Gallery</p>
 
         <h2 className="text-center text-2xl md:text-3xl font-semibold mb-14">
           Spectacular Works From Our <br />
           Digital Print Services
         </h2>
 
-        <div
-          className="
-            grid
-            gap-4
-            max-w-7xl
-            mx-auto
-            grid-cols-1
-            md:grid-cols-[592fr_518fr_394fr]
-            grid-rows-[373fr_361fr_440fr]
-          "
-        >
+        <div className="grid mx-auto max-w-[1500px] grid-cols-[3fr_2.6fr_2fr] gap-4 grid-rows-[auto_auto_auto]">
 
-          <div className="row-span-3">
-            <ImageBox image={images[0]} />
+
+          <div className="col-start-1 row-start-1 row-span-3 flex flex-col gap-4">
+            <div className="h-[863px]">
+              <ImageBox image={images[0]} />
+            </div>
+
+            <div className="h-[348px]">
+              <ImageBox image={images[6]} />
+            </div>
           </div>
 
-          <ImageBox image={images[1]} />
-          <ImageBox image={images[3]} />
 
-          <ImageBox image={images[2]} />
-          <ImageBox image={images[4]} />
+          <div className="col-start-2 row-start-1 row-span-3 flex flex-col gap-4">
+            <div className="h-[380px]">
+              <ImageBox image={images[1]} />
+            </div>
 
-          <ImageBox image={images[5]} />
-          <ImageBox image={images[6]} />
+            <div className="h-[370px]">
+              <ImageBox image={images[3]} />
+            </div>
+
+            <div className="h-[442px]">
+              <ImageBox image={images[5]} />
+            </div>
+          </div>
+
+
+          <div className="col-start-3 row-start-1">
+            <div className="h-[513px]">
+              <ImageBox image={images[2]} />
+            </div>
+          </div>
+
+          <div className="col-start-3 row-start-2">
+            <div className="h-[361px]">
+              <ImageBox image={images[4]} />
+            </div>
+          </div>
+
+          <div className="col-start-3 row-start-3">
+            <div className="h-[302px]">
+              <ImageBox image={images[7]} />
+            </div>
+          </div>
         </div>
+
       </section>
 
       <Testimonials />
