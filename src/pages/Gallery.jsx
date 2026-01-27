@@ -22,9 +22,13 @@ const Gallery = () => {
           (g.images || []).map((img) => ({
             src: `${import.meta.env.VITE_API_BASE_URL}/uploads/${typeof img === "string" ? img : img.file
               }`,
-            title: img.title || "Gallery Image",
+            title:
+              typeof img === "string"
+                ? g.title
+                : img.title || g.title,
           }))
         );
+
 
         setImages(allImages);
       } catch (err) {
@@ -57,11 +61,14 @@ const Gallery = () => {
         className="w-full h-full object-cover"
         loading="lazy"
       />
-      <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex items-end">
+      <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex items-end justify-center">
         <div className="p-4">
-          <h3 className="text-white text-lg font-semibold">{image.title}</h3>
+          <h3 className="text-white text-lg font-semibold text-center">
+            {image.title}
+          </h3>
         </div>
       </div>
+
     </div>
   );
 
