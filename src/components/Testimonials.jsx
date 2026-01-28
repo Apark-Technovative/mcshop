@@ -26,18 +26,22 @@ const Testimonials = () => {
         </div>
 
         <div className="md:col-span-1 flex items-center justify-center">
-          <iframe
-            src="https://widgets.sociablekit.com/google-reviews/iframe/25636544"
-            width="100%"
-            height="360"
-            className="sm:h-[420px] md:h-[500px]"
-            style={{
-              border: "none",
-              borderRadius: "12px",
-              boxShadow: "0 10px 40px rgba(0, 0, 0, 0.1)",
-              maxWidth: "500px"
-            }}
-          ></iframe>
+
+          <div className="w-full relative aspect-[4/3] sm:aspect-auto">
+            <iframe
+              src="https://widgets.sociablekit.com/google-reviews/iframe/25636544"
+              width="100%"
+              height="360"
+              className="absolute inset-0 sm:static sm:h-[420px] md:h-[500px]"
+              style={{
+                border: "none",
+                borderRadius: "12px",
+                boxShadow: "0 10px 40px rgba(0, 0, 0, 0.1)",
+                maxWidth: "500px"
+              }}
+            ></iframe>
+          </div>
+
         </div>
 
       </div>

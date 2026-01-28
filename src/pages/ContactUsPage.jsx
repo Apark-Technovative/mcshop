@@ -114,17 +114,14 @@ const ContactUsPage = () => {
   return (
     <>
 
-
       <Hero
         variant="page"
         title="Contact Us"
         description="Have questions or need assistance with your printing project? We’re here to help. Reach out to us for inquiries, orders, price quotes, or custom requirements. Visit our shop, call us, or send us a message anytime — we aim to respond quickly and provide the best support possible."
       />
 
-
       <div className="max-w-6xl mx-auto px-4 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-
 
           <div>
             <h2 className="text-3xl font-semibold mb-8">
@@ -253,8 +250,10 @@ const ContactUsPage = () => {
             </h2>
 
             <p className="text-sm text-gray-600 mb-6 text-center">
-              Lorem ipsum dolor sit amet consectetur. Non commodo mi elit ut
-              convallis. Tempor facilisis pellentesque sem praesent tortor.
+              Our support team is always ready to assist you. Whether you have
+              questions about our services, need help with an order, or want a
+              custom quote, feel free to reach out through call, email, or by
+              visiting our shop.
             </p>
 
             <div className="space-y-4 text-sm relative z-10">

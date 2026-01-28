@@ -1,26 +1,26 @@
 import React from "react";
 
 const teamMembers = [
-  { 
+  {
     img: "/images/team1.png",
-    name: "Rajesh Dongol", 
-    role: "Proprietor" 
+    name: "Rajesh Dongol",
+    role: "Proprietor"
   },
-  { 
+  {
     img: "/images/team2.png",
-    name: "Janaki Khadka", 
-    role: "Manager" 
+    name: "Janaki Khadka",
+    role: "Manager"
   },
   {
-     img: "/images/team3.png", 
-     name: "Amit Maharjan", 
-     role: "Technical Support" 
-    },
+    img: "/images/team3.png",
+    name: "Amit Maharjan",
+    role: "Technical Support"
+  },
   {
-     img: "/images/team4.png", 
-     name: "Ashim Dongol", 
-     role: "IT Support" 
-    },
+    img: "/images/team4.png",
+    name: "Ashim Dongol",
+    role: "IT Support"
+  },
 ];
 
 export default function CreativeTeam() {
@@ -35,7 +35,8 @@ export default function CreativeTeam() {
       </div>
 
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 justify-items-center">
+
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 justify-items-center">
           {teamMembers.map((member, index) => (
             <div key={index} className="relative group overflow-hidden">
 

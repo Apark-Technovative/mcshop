@@ -29,9 +29,8 @@ const Gallery = () => {
           }))
         );
 
-
         setImages(allImages);
-      } catch (err) {
+      } catch {
         setError(true);
       } finally {
         setLoading(false);
@@ -41,17 +40,13 @@ const Gallery = () => {
     fetchGallery();
   }, []);
 
-  if (loading) {
-    return <p className="text-center py-20">Loading gallery...</p>;
-  }
-
-  if (error || images.length < 8) {
+  if (loading) return <p className="text-center py-20">Loading gallery...</p>;
+  if (error || images.length < 8)
     return (
       <p className="text-center py-20 text-red-500">
         Failed to load gallery
       </p>
     );
-  }
 
   const ImageBox = ({ image }) => (
     <div className="relative w-full h-full overflow-hidden rounded-lg group">
@@ -59,7 +54,6 @@ const Gallery = () => {
         src={image.src}
         alt={image.title}
         className="w-full h-full object-cover"
-        loading="lazy"
       />
       <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex items-end justify-center">
         <div className="p-4">
@@ -68,7 +62,6 @@ const Gallery = () => {
           </h3>
         </div>
       </div>
-
     </div>
   );
 
@@ -80,62 +73,70 @@ const Gallery = () => {
         description="Explore our gallery to see the quality and variety of work we produce. From engineering drawings and architectural layouts to creative photo prints, business cards, and custom gift items, our gallery showcases real samples of our printing capabilities. Each project represents our commitment to precision, clarity, and customer satisfaction."
       />
 
-      <section className="px-6 md:px-20 py-16 bg-gray-100 overflow-x-hidden">
+      <section className="px-6 md:px-20 py-12 md:py-16 bg-gray-100 overflow-hidden">
         <p className="text-center text-sm text-gray-600 mb-2">Gallery</p>
 
-        <h2 className="text-center text-2xl md:text-3xl font-semibold mb-14">
+        <h2 className="text-center text-2xl sm:text-3xl md:text-4xl font-bold leading-snug sm:leading-tight mb-4 sm:mb-6">
           Spectacular Works From Our <br />
           Digital Print Services
         </h2>
 
-        <div className="grid mx-auto max-w-[1500px] grid-cols-[3fr_2.6fr_2fr] gap-4 grid-rows-[auto_auto_auto]">
 
+        <div className="w-full flex justify-center overflow-x-auto">
+          <div
+            className="
+        grid
+        grid-cols-[3fr_2.6fr_2fr]
+        gap-4
+        grid-rows-[auto_auto_auto]
+        max-w-[1500px]
+        origin-top
+        scale-[0.7]
+        sm:scale-[0.85]
+        md:scale-100
+      "
+          >
 
-          <div className="col-start-1 row-start-1 row-span-3 flex flex-col gap-4">
-            <div className="h-[863px]">
-              <ImageBox image={images[0]} />
+            <div className="col-start-1 row-start-1 row-span-3 flex flex-col gap-4">
+              <div className="h-[520px] md:h-[863px]">
+                <ImageBox image={images[0]} />
+              </div>
+              <div className="h-[220px] md:h-[348px]">
+                <ImageBox image={images[6]} />
+              </div>
             </div>
 
-            <div className="h-[348px]">
-              <ImageBox image={images[6]} />
-            </div>
-          </div>
-
-
-          <div className="col-start-2 row-start-1 row-span-3 flex flex-col gap-4">
-            <div className="h-[380px]">
-              <ImageBox image={images[1]} />
-            </div>
-
-            <div className="h-[370px]">
-              <ImageBox image={images[3]} />
+            <div className="col-start-2 row-start-1 row-span-3 flex flex-col gap-4">
+              <div className="h-[210px] md:h-[380px]">
+                <ImageBox image={images[1]} />
+              </div>
+              <div className="h-[210px] md:h-[370px]">
+                <ImageBox image={images[3]} />
+              </div>
+              <div className="h-[305px] md:h-[442px]">
+                <ImageBox image={images[5]} />
+              </div>
             </div>
 
-            <div className="h-[442px]">
-              <ImageBox image={images[5]} />
+            <div className="col-start-3 row-start-1">
+              <div className="h-[320px] md:h-[513px]">
+                <ImageBox image={images[2]} />
+              </div>
             </div>
-          </div>
 
-
-          <div className="col-start-3 row-start-1">
-            <div className="h-[513px]">
-              <ImageBox image={images[2]} />
+            <div className="col-start-3 row-start-2">
+              <div className="h-[220px] md:h-[361px]">
+                <ImageBox image={images[4]} />
+              </div>
             </div>
-          </div>
 
-          <div className="col-start-3 row-start-2">
-            <div className="h-[361px]">
-              <ImageBox image={images[4]} />
-            </div>
-          </div>
-
-          <div className="col-start-3 row-start-3">
-            <div className="h-[302px]">
-              <ImageBox image={images[7]} />
+            <div className="col-start-3 row-start-3">
+              <div className="h-[180px] md:h-[302px]">
+                <ImageBox image={images[7]} />
+              </div>
             </div>
           </div>
         </div>
-
       </section>
 
       <Testimonials />
