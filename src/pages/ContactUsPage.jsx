@@ -31,7 +31,6 @@ const ContactUsPage = () => {
     }
   }, [success]);
 
-
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -256,6 +255,7 @@ const ContactUsPage = () => {
               Lorem ipsum dolor sit amet consectetur. Non commodo mi elit ut
               convallis. Tempor facilisis pellentesque sem praesent tortor.
             </p>
+
 
             <div className="space-y-4 text-sm relative z-10">
               <div className="flex items-center gap-3">
