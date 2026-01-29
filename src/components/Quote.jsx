@@ -44,37 +44,23 @@ const Quote = ({ isOpen, onClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (!formData.serviceId) {
       alert("Please select a service");
       return;
     }
 
     setLoading(true);
-
     try {
       const data = new FormData();
-      data.append("name", formData.name);
-      data.append("email", formData.email);
-      data.append("phone", formData.phone);
-      data.append("serviceId", formData.serviceId);
-      data.append("quantity", formData.quantity);
-      data.append("message", formData.message);
-
-      if (file) {
-        data.append("file", file);
-      }
+      Object.keys(formData).forEach((key) => data.append(key, formData[key]));
+      if (file) data.append("file", file);
 
       await axiosInstance.post("/api/createQuote", data, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
+        headers: { "Content-Type": "multipart/form-data" },
       });
 
       alert("Quote request submitted successfully");
       onClose();
-
-
       setFormData({
         name: "",
         email: "",
@@ -88,7 +74,7 @@ const Quote = ({ isOpen, onClose }) => {
       console.error("Backend error:", error.response?.data);
       alert(
         error.response?.data?.message ||
-        "Server error. Please try again later."
+          "Server error. Please try again later."
       );
     } finally {
       setLoading(false);
@@ -96,133 +82,139 @@ const Quote = ({ isOpen, onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
-      <div className="bg-white w-full max-w-4xl rounded-lg p-6 relative">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-2 sm:p-4 overflow-auto">
+      <div className="bg-white w-full max-w-md sm:max-w-2xl md:max-w-4xl rounded-lg shadow-lg relative flex flex-col"
+           style={{ maxHeight: "90vh" }}>
 
-        <button
-  onClick={onClose}
-  className="absolute top-4 right-4 text-red-600 text-2xl cursor-pointer"
->
-  <FiX />
-</button>
-
-        <h2 className="text-2xl font-semibold mb-6">Request A Quote</h2>
-
-        <form
-          onSubmit={handleSubmit}
-          className="grid grid-cols-1 md:grid-cols-2 gap-6"
-        >
-          <div className="flex flex-col gap-1">
-            <label className="text-sm font-medium">
-              Name <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              required
-              onChange={handleChange}
-              className="border p-3 rounded"
-              placeholder="Enter your name"
-            />
-          </div>
-
-          <div className="flex flex-col gap-1">
-            <label className="text-sm font-medium">
-              Email <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              required
-              onChange={handleChange}
-              className="border p-3 rounded"
-              placeholder="Enter your email"
-            />
-          </div>
-
-          <div className="flex flex-col gap-1">
-            <label className="text-sm font-medium">
-              Phone <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              name="phone"
-              value={formData.phone}
-              required
-              onChange={handleChange}
-              className="border p-3 rounded"
-              placeholder="Enter your phone number"
-            />
-          </div>
-
-          <div className="flex flex-col gap-1">
-            <label className="text-sm font-medium">
-              Service Type <span className="text-red-500">*</span>
-            </label>
-            <select
-              name="serviceId"
-              value={formData.serviceId}
-              required
-              onChange={handleChange}
-              className="border p-3 rounded"
-              disabled={servicesLoading}
-            >
-              <option value="">
-                {servicesLoading ? "Loading services..." : "Select your service"}
-              </option>
-              {services.map((service) => (
-                <option key={service._id} value={service._id}>
-                  {service.title}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div className="flex flex-col gap-1">
-            <label className="text-sm font-medium">Quantity</label>
-            <input
-              type="number"
-              name="quantity"
-              value={formData.quantity}
-              onChange={handleChange}
-              className="border p-3 rounded"
-              placeholder="Enter quantity"
-            />
-          </div>
-
-          <div className="flex flex-col gap-1">
-            <label className="text-sm font-medium">Upload Design</label>
-            <input
-              type="file"
-              accept=".pdf,.jpg,.jpeg,.png,.tif,.tiff,.bmp,.webp"
-              onChange={(e) => setFile(e.target.files[0])}
-              className="border p-3 rounded"
-            />
-          </div>
-
-          <div className="flex flex-col gap-1 md:col-span-2">
-            <label className="text-sm font-medium">Message</label>
-            <textarea
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              rows="4"
-              className="border p-3 rounded"
-              placeholder="Enter message"
-            />
-          </div>
-
+        <div className="flex justify-between items-center p-4 border-b sticky top-0 bg-white z-10">
+          <h2 className="text-2xl md:text-3xl font-semibold">Request A Quote</h2>
           <button
-            type="submit"
-            disabled={loading}
-            className="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 cursor-pointer md:col-span-2 w-fit"
+            onClick={onClose}
+            className="text-red-600 text-2xl cursor-pointer"
           >
-            {loading ? "Submitting..." : "Get A Quote"}
+            <FiX />
           </button>
+        </div>
 
-        </form>
+        <div className="p-4 sm:p-6 md:p-10 overflow-y-auto">
+          <form
+            onSubmit={handleSubmit}
+            className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6"
+          >
+          
+            <div className="flex flex-col gap-1">
+              <label className="text-sm font-medium">
+                Name <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                required
+                onChange={handleChange}
+                className="border p-2 sm:p-3 rounded w-full"
+                placeholder="Enter your name"
+              />
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <label className="text-sm font-medium">
+                Email <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                required
+                onChange={handleChange}
+                className="border p-2 sm:p-3 rounded w-full"
+                placeholder="Enter your email"
+              />
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <label className="text-sm font-medium">
+                Phone <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                name="phone"
+                value={formData.phone}
+                required
+                onChange={handleChange}
+                className="border p-2 sm:p-3 rounded w-full"
+                placeholder="Enter your phone number"
+              />
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <label className="text-sm font-medium">
+                Service Type <span className="text-red-500">*</span>
+              </label>
+              <select
+                name="serviceId"
+                value={formData.serviceId}
+                required
+                onChange={handleChange}
+                className="border p-2 sm:p-3 rounded w-full"
+                disabled={servicesLoading}
+              >
+                <option value="">
+                  {servicesLoading
+                    ? "Loading services..."
+                    : "Select your service"}
+                </option>
+                {services.map((service) => (
+                  <option key={service._id} value={service._id}>
+                    {service.title}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <label className="text-sm font-medium">Quantity</label>
+              <input
+                type="number"
+                name="quantity"
+                value={formData.quantity}
+                onChange={handleChange}
+                className="border p-2 sm:p-3 rounded w-full"
+                placeholder="Enter quantity"
+              />
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <label className="text-sm font-medium">Upload Design</label>
+              <input
+                type="file"
+                accept=".pdf,.jpg,.jpeg,.png,.tif,.tiff,.bmp,.webp"
+                onChange={(e) => setFile(e.target.files[0])}
+                className="border p-2 sm:p-3 rounded w-full"
+              />
+            </div>
+
+            <div className="flex flex-col gap-1 md:col-span-2">
+              <label className="text-sm font-medium">Message</label>
+              <textarea
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                rows="4"
+                className="border p-2 sm:p-3 rounded w-full"
+                placeholder="Enter message"
+              />
+            </div>
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="bg-blue-600 text-white px-6 py-2 sm:py-3 rounded hover:bg-blue-700 cursor-pointer md:col-span-2 w-full sm:w-auto"
+            >
+              {loading ? "Submitting..." : "Get A Quote"}
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );

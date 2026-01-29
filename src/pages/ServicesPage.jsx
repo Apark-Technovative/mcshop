@@ -49,16 +49,13 @@ const ServicesPage = () => {
     sectionRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-
   return (
     <>
-
       <Hero
         variant="page"
         title="Services"
         description="At Mc-Shop, we offer a wide range of high-quality digital printing services designed to meet personal, commercial, and professional needs. Our services include engineering and architectural printing, large-format prints (A4 to A0), business card design and printing, custom mug printing, photo and poster printing, and personalized gift items. We focus on accuracy, clarity, and fast delivery to ensure every project meets your expectations."
       />
-
 
       {loading ? (
         <section className="py-20 text-center text-gray-600">
@@ -84,25 +81,51 @@ const ServicesPage = () => {
               {currentServices.map((service, index) => (
                 <div
                   key={service._id}
-                  className={`flex flex-col md:flex-row items-center gap-8 ${index % 2 !== 0 ? "md:flex-row-reverse" : ""
-                    }`}
+                  className={`
+                    flex flex-col md:flex-row items-center gap-8
+                    ${index % 2 !== 0 ? "md:flex-row-reverse" : ""}
+                    bg-gray-50 md:bg-transparent
+                    rounded-xl md:rounded-none
+                    p-4 md:p-0
+                  `}
                 >
                   <img
                     src={`${import.meta.env.VITE_API_BASE_URL}/uploads/${service.images?.[0]}`}
                     alt={service.title}
-                    className="w-full md:w-1/2 h-80 md:h-112 object-cover rounded-lg shadow-md transition-transform duration-300 hover:scale-105"
+                    className="
+                      w-full md:w-1/2
+                      h-64 md:h-112
+                      object-cover
+                      rounded-lg
+                      shadow-md
+                      transition-transform duration-300
+                      hover:scale-105
+                    "
                   />
 
                   <div className="md:w-1/2 flex flex-col">
-                    <h3 className="text-xl font-semibold mb-4">{service.title}</h3>
-                    <p className="text-gray-600 mb-6">{service.description}</p>
+                    <h3 className="text-xl font-semibold mb-4">
+                      {service.title}
+                    </h3>
+
+                    <p className="text-gray-600 mb-6">
+                      {service.description}
+                    </p>
+
                     <Link
                       to={`/services/${service._id}`}
-                      className="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition cursor-pointer inline-block text-center"
+                      className="
+                        bg-blue-600 text-white
+                        px-5 py-2
+                        rounded-lg
+                        hover:bg-blue-700 transition
+                        cursor-pointer
+                        text-center
+                        w-full md:w-fit
+                      "
                     >
                       See Detail
                     </Link>
-
                   </div>
                 </div>
               ))}
@@ -114,8 +137,8 @@ const ServicesPage = () => {
                   key={i}
                   onClick={() => handlePageChange(i + 1)}
                   className={`px-4 py-2 rounded-lg transition cursor-pointer ${currentPage === i + 1
-                    ? "bg-blue-600 text-white"
-                    : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                      ? "bg-blue-600 text-white"
+                      : "bg-gray-200 text-gray-700 hover:bg-gray-300"
                     }`}
                 >
                   {i + 1}

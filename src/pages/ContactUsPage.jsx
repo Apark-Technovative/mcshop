@@ -112,21 +112,17 @@ const ContactUsPage = () => {
 
   return (
     <>
-
-
       <Hero
         variant="page"
         title="Contact Us"
         description="Have questions or need assistance with your printing project? We’re here to help. Reach out to us for inquiries, orders, price quotes, or custom requirements. Visit our shop, call us, or send us a message anytime — we aim to respond quickly and provide the best support possible."
       />
 
-
       <div className="max-w-6xl mx-auto px-4 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
 
-
-          <div>
-            <h2 className="text-3xl font-semibold mb-8">
+          <div className="max-w-xl mx-auto lg:mx-0">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold lg:font-semibold text-center lg:text-left leading-snug sm:leading-tight mb-6 sm:mb-8">
               Let’s Get In Touch
             </h2>
 
@@ -234,42 +230,53 @@ const ContactUsPage = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className={`bg-blue-600 text-white px-6 py-2 rounded-md transition
-    ${loading
+                className={`w-full md:w-auto bg-blue-600 text-white px-6 py-2 rounded-md transition
+                ${loading
                     ? "opacity-60 cursor-not-allowed"
                     : "hover:bg-blue-700 cursor-pointer"
                   }`}
               >
                 {loading ? "Sending..." : "Send Message"}
               </button>
-
             </form>
           </div>
 
           <div className="bg-gray-100 rounded-lg p-8 relative overflow-hidden">
-            <h2 className="text-2xl font-semibold text-center mb-4">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold lg:font-semibold text-center leading-snug sm:leading-tight mb-4 sm:mb-6">
               Need More Help?
             </h2>
 
             <p className="text-sm text-gray-600 mb-6 text-center">
-              Lorem ipsum dolor sit amet consectetur. Non commodo mi elit ut
-              convallis. Tempor facilisis pellentesque sem praesent tortor.
+              Our support team is always ready to assist you. Whether you have
+              questions about our services, need help with an order, or want a
+              custom quote, feel free to reach out.
             </p>
 
 
-            <div className="space-y-4 text-sm relative z-10">
-              <div className="flex items-center gap-3">
-                <FiPhone />
-                <span>+977-9851082739</span>
+            <div className="space-y-4">
+
+              <div className="flex items-center gap-3 bg-white p-3 rounded-md shadow-sm md:bg-transparent md:p-0 md:shadow-none cursor-pointer">
+                <FiPhone className="text-lg" />
+                <a
+                  href="tel:+9779851082739"
+                  className="hover:text-blue-600 transition cursor-pointer"
+                >
+                  +977-9851082739
+                </a>
               </div>
 
-              <div className="flex items-center gap-3">
-                <FiMail />
-                <span>mcshopnepal@gmail.com</span>
+              <div className="flex items-center gap-3 bg-white p-3 rounded-md shadow-sm md:bg-transparent md:p-0 md:shadow-none cursor-pointer">
+                <FiMail className="text-lg" />
+                <a
+                  href="mailto:mcshopnepal@gmail.com"
+                  className="hover:text-blue-600 transition break-all cursor-pointer"
+                >
+                  mcshopnepal@gmail.com
+                </a>
               </div>
 
-              <div className="flex items-center gap-3">
-                <MdLocationOn />
+              <div className="flex items-center gap-3 bg-white p-3 rounded-md shadow-sm md:bg-transparent md:p-0 md:shadow-none">
+                <MdLocationOn className="text-lg" />
                 <span>Dyabu Marg, Galkopakhā, Kathmandu</span>
               </div>
             </div>
@@ -280,24 +287,6 @@ const ContactUsPage = () => {
             <span className="absolute bottom-2 -left-2 w-4 h-4 border-2 border-green-500 rounded-full"></span>
             <span className="absolute bottom-4 right-6 w-6 h-6 border-2 border-orange-400 rounded-full"></span>
             <span className="absolute bottom-3 -right-4 w-3 h-3 border-2 border-indigo-400 rounded-full"></span>
-            <span
-              className="absolute bottom-4 left-1/2 w-0 h-0"
-              style={{
-                borderLeft: "12px solid transparent",
-                borderRight: "12px solid transparent",
-                borderBottom: "18px solid #6366F1",
-                transform: "translateX(-50%)",
-              }}
-            ></span>
-            <span
-              className="absolute bottom-3 left-32 w-0 h-0"
-              style={{
-                borderLeft: "5px solid transparent",
-                borderRight: "5px solid transparent",
-                borderBottom: "8px solid #10B981",
-                transform: "rotate(10deg)"
-              }}
-            ></span>
           </div>
         </div>
       </div>
@@ -309,7 +298,7 @@ const ContactUsPage = () => {
 
         <div className="max-w-[1400px] mx-auto px-6">
           <iframe
-            className="w-full h-[500px] border-0"
+            className="w-full h-[320px] md:h-[500px] border-0"
             src="https://maps.google.com/maps?width=100%25&height=600&hl=en&q=My%20Computer%20Shop%20(Naksha%20Printing%20&%20Photocopy%20Shop)%20Color%20&%20B/W+(My%20Computer%20Shop)&t=&z=15&ie=UTF8&iwloc=B&output=embed"
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"

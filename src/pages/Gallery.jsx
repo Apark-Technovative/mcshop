@@ -19,24 +19,18 @@ const Gallery = () => {
         const galleries = res.data?.data || [];
 
         const allImages = galleries.flatMap((g) =>
-          (g.images || []).map((img) => {
-            if (typeof img === "string") {
-              return {
-                src: `${import.meta.env.VITE_API_BASE_URL}/uploads/${img}`,
-                title: "Gallery Image",
-              };
-            }
-
-            return {
-              src: `${import.meta.env.VITE_API_BASE_URL}/uploads/${img.file}`,
-              title: img.title || "Gallery Image",
-            };
-          })
+          (g.images || []).map((img) => ({
+            src: `${import.meta.env.VITE_API_BASE_URL}/uploads/${typeof img === "string" ? img : img.file
+              }`,
+            title:
+              typeof img === "string"
+                ? g.title
+                : img.title || g.title,
+          }))
         );
 
         setImages(allImages);
-      } catch (err) {
-        console.error("Gallery fetch failed:", err);
+      } catch {
         setError(true);
       } finally {
         setLoading(false);
@@ -46,17 +40,13 @@ const Gallery = () => {
     fetchGallery();
   }, []);
 
-  if (loading) {
-    return <p className="text-center py-20">Loading gallery...</p>;
-  }
-
-  if (error || images.length < 7) {
+  if (loading) return <p className="text-center py-20">Loading gallery...</p>;
+  if (error || images.length < 8)
     return (
       <p className="text-center py-20 text-red-500">
         Failed to load gallery
       </p>
     );
-  }
 
   const ImageBox = ({ image }) => (
     <div className="relative w-full h-full overflow-hidden rounded-lg group">
@@ -64,25 +54,10 @@ const Gallery = () => {
         src={image.src}
         alt={image.title}
         className="w-full h-full object-cover"
-        loading="lazy"
       />
-
-      <div
-        className="
-          absolute inset-0
-          bg-black/60
-          translate-y-full
-          opacity-0
-          group-hover:translate-y-0
-          group-hover:opacity-100
-          transition-all
-          duration-700
-          ease-in-out
-          flex items-end
-        "
-      >
+      <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex items-end justify-center">
         <div className="p-4">
-          <h3 className="text-white text-lg font-semibold">
+          <h3 className="text-white text-lg font-semibold text-center">
             {image.title}
           </h3>
         </div>
@@ -98,40 +73,69 @@ const Gallery = () => {
         description="Explore our gallery to see the quality and variety of work we produce. From engineering drawings and architectural layouts to creative photo prints, business cards, and custom gift items, our gallery showcases real samples of our printing capabilities. Each project represents our commitment to precision, clarity, and customer satisfaction."
       />
 
-      <section className="px-6 md:px-20 py-16 bg-gray-100">
-        <p className="text-center text-sm text-gray-600 mb-2">
-          Gallery
-        </p>
+      <section className="px-6 md:px-20 py-12 md:py-16 bg-gray-100 overflow-hidden">
+        <p className="text-center text-sm text-gray-600 mb-2">Gallery</p>
 
-        <h2 className="text-center text-2xl md:text-3xl font-semibold mb-14">
+        <h2 className="text-center text-2xl sm:text-3xl md:text-4xl font-bold leading-snug sm:leading-tight mb-4 sm:mb-6">
           Spectacular Works From Our <br />
           Digital Print Services
         </h2>
 
-        <div
-          className="
-            grid
-            gap-4
-            max-w-7xl
-            mx-auto
-            grid-cols-1
-            md:grid-cols-[592fr_518fr_394fr]
-            grid-rows-[373fr_361fr_440fr]
-          "
-        >
 
-          <div className="row-span-3">
-            <ImageBox image={images[0]} />
+        <div className="w-full flex justify-center overflow-x-auto">
+          <div
+            className="
+        grid
+        grid-cols-[3fr_2.6fr_2fr]
+        gap-4
+        grid-rows-[auto_auto_auto]
+        max-w-[1500px]
+        origin-top
+        scale-[0.7]
+        sm:scale-[0.85]
+        md:scale-100
+      "
+          >
+
+            <div className="col-start-1 row-start-1 row-span-3 flex flex-col gap-4">
+              <div className="h-[520px] md:h-[863px]">
+                <ImageBox image={images[0]} />
+              </div>
+              <div className="h-[220px] md:h-[348px]">
+                <ImageBox image={images[6]} />
+              </div>
+            </div>
+
+            <div className="col-start-2 row-start-1 row-span-3 flex flex-col gap-4">
+              <div className="h-[210px] md:h-[380px]">
+                <ImageBox image={images[1]} />
+              </div>
+              <div className="h-[210px] md:h-[370px]">
+                <ImageBox image={images[3]} />
+              </div>
+              <div className="h-[305px] md:h-[442px]">
+                <ImageBox image={images[5]} />
+              </div>
+            </div>
+
+            <div className="col-start-3 row-start-1">
+              <div className="h-[320px] md:h-[513px]">
+                <ImageBox image={images[2]} />
+              </div>
+            </div>
+
+            <div className="col-start-3 row-start-2">
+              <div className="h-[220px] md:h-[361px]">
+                <ImageBox image={images[4]} />
+              </div>
+            </div>
+
+            <div className="col-start-3 row-start-3">
+              <div className="h-[180px] md:h-[302px]">
+                <ImageBox image={images[7]} />
+              </div>
+            </div>
           </div>
-
-          <ImageBox image={images[1]} />
-          <ImageBox image={images[3]} />
-
-          <ImageBox image={images[2]} />
-          <ImageBox image={images[4]} />
-
-          <ImageBox image={images[5]} />
-          <ImageBox image={images[6]} />
         </div>
       </section>
 
