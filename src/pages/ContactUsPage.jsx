@@ -252,7 +252,6 @@ const ContactUsPage = () => {
               custom quote, feel free to reach out.
             </p>
 
-
             <div className="space-y-4">
 
               <div className="flex items-center gap-3 bg-white p-3 rounded-md shadow-sm md:bg-transparent md:p-0 md:shadow-none cursor-pointer">
