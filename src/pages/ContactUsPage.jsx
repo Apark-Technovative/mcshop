@@ -252,15 +252,26 @@ const ContactUsPage = () => {
               custom quote, feel free to reach out.
             </p>
 
-            <div className="space-y-4 text-sm relative z-10">
-              <div className="flex items-center gap-3 bg-white p-3 rounded-md shadow-sm md:bg-transparent md:p-0 md:shadow-none">
+            <div className="space-y-4">
+
+              <div className="flex items-center gap-3 bg-white p-3 rounded-md shadow-sm md:bg-transparent md:p-0 md:shadow-none cursor-pointer">
                 <FiPhone className="text-lg" />
-                <span>+977-9851082739</span>
+                <a
+                  href="tel:+9779851082739"
+                  className="hover:text-blue-600 transition cursor-pointer"
+                >
+                  +977-9851082739
+                </a>
               </div>
 
-              <div className="flex items-center gap-3 bg-white p-3 rounded-md shadow-sm md:bg-transparent md:p-0 md:shadow-none">
+              <div className="flex items-center gap-3 bg-white p-3 rounded-md shadow-sm md:bg-transparent md:p-0 md:shadow-none cursor-pointer">
                 <FiMail className="text-lg" />
-                <span>mcshopnepal@gmail.com</span>
+                <a
+                  href="mailto:mcshopnepal@gmail.com"
+                  className="hover:text-blue-600 transition break-all cursor-pointer"
+                >
+                  mcshopnepal@gmail.com
+                </a>
               </div>
 
               <div className="flex items-center gap-3 bg-white p-3 rounded-md shadow-sm md:bg-transparent md:p-0 md:shadow-none">
