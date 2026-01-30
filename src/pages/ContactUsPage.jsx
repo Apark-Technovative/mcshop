@@ -9,6 +9,7 @@ const ContactUsPage = () => {
   useEffect(() => {
     document.title = "Contact Us | mcshop";
   }, []);
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -26,7 +27,6 @@ const ContactUsPage = () => {
       const timer = setTimeout(() => {
         setSuccess("");
       }, 3000);
-
       return () => clearTimeout(timer);
     }
   }, [success]);
@@ -36,7 +36,6 @@ const ContactUsPage = () => {
       ...formData,
       [e.target.name]: e.target.value,
     });
-
     setErrors({
       ...errors,
       [e.target.name]: "",
@@ -51,23 +50,19 @@ const ContactUsPage = () => {
 
     const newErrors = {};
 
-    if (!formData.name)
-      newErrors.name = "Name is required";
+    if (!formData.name) newErrors.name = "Name is required";
     else if (!nameRegex.test(formData.name))
       newErrors.name = "Name should contain only letters";
 
-    if (!formData.email)
-      newErrors.email = "Email is required";
+    if (!formData.email) newErrors.email = "Email is required";
     else if (!emailRegex.test(formData.email))
       newErrors.email = "Email is not valid";
 
-    if (!formData.phone)
-      newErrors.phone = "Phone is required";
+    if (!formData.phone) newErrors.phone = "Phone is required";
     else if (!phoneRegex.test(formData.phone))
       newErrors.phone = "Phone must be a valid Nepali number";
 
-    if (!formData.message)
-      newErrors.message = "Message is required";
+    if (!formData.message) newErrors.message = "Message is required";
 
     return newErrors;
   };
@@ -88,7 +83,6 @@ const ContactUsPage = () => {
       await axiosInstance.post("/api/contact", formData);
 
       setSuccess("Your message has been sent successfully!");
-
       setFormData({
         name: "",
         email: "",
@@ -96,7 +90,6 @@ const ContactUsPage = () => {
         subject: "",
         message: "",
       });
-
       setErrors({});
     } catch (error) {
       setErrors({
@@ -120,23 +113,16 @@ const ContactUsPage = () => {
 
       <div className="max-w-6xl mx-auto px-4 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-
-          <div className="max-w-xl mx-auto lg:mx-0">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold lg:font-semibold text-center lg:text-left leading-snug sm:leading-tight mb-6 sm:mb-8">
-              Let’s Get In Touch
-            </h2>
+          <div>
+            <h2 className="text-3xl font-semibold mb-8">Let’s Get In Touch</h2>
 
             <form className="space-y-6" onSubmit={handleSubmit}>
               {success && (
-                <p className="text-green-600 text-sm font-medium">
-                  {success}
-                </p>
+                <p className="text-green-600 text-sm font-medium">{success}</p>
               )}
 
               {errors.submit && (
-                <p className="text-red-500 text-sm">
-                  {errors.submit}
-                </p>
+                <p className="text-red-500 text-sm">{errors.submit}</p>
               )}
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -230,8 +216,7 @@ const ContactUsPage = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className={`w-full md:w-auto bg-blue-600 text-white px-6 py-2 rounded-md transition
-                ${loading
+                className={`bg-blue-600 text-white px-6 py-2 rounded-md transition ${loading
                     ? "opacity-60 cursor-not-allowed"
                     : "hover:bg-blue-700 cursor-pointer"
                   }`}
@@ -242,40 +227,40 @@ const ContactUsPage = () => {
           </div>
 
           <div className="bg-gray-100 rounded-lg p-8 relative overflow-hidden">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold lg:font-semibold text-center leading-snug sm:leading-tight mb-4 sm:mb-6">
+            <h2 className="text-2xl font-semibold text-center mb-4">
               Need More Help?
             </h2>
 
             <p className="text-sm text-gray-600 mb-6 text-center">
               Our support team is always ready to assist you. Whether you have
               questions about our services, need help with an order, or want a
-              custom quote, feel free to reach out.
+              custom quote, feel free to reach out through call, email, or by
+              visiting our shop.
             </p>
 
-            <div className="space-y-4">
-
-              <div className="flex items-center gap-3 bg-white p-3 rounded-md shadow-sm md:bg-transparent md:p-0 md:shadow-none cursor-pointer">
-                <FiPhone className="text-lg" />
+            <div className="space-y-4 text-sm relative z-10">
+              <div className="flex items-center gap-3 cursor-pointer">
+                <FiPhone className="text-xl" />
                 <a
                   href="tel:+9779851082739"
-                  className="hover:text-blue-600 transition cursor-pointer"
+                  className="hover:text-blue-600 transition"
                 >
                   +977-9851082739
                 </a>
               </div>
 
-              <div className="flex items-center gap-3 bg-white p-3 rounded-md shadow-sm md:bg-transparent md:p-0 md:shadow-none cursor-pointer">
-                <FiMail className="text-lg" />
+              <div className="flex items-center gap-3 cursor-pointer">
+                <FiMail className="text-xl" />
                 <a
                   href="mailto:mcshopnepal@gmail.com"
-                  className="hover:text-blue-600 transition break-all cursor-pointer"
+                  className="hover:text-blue-600 transition break-all"
                 >
                   mcshopnepal@gmail.com
                 </a>
               </div>
 
-              <div className="flex items-center gap-3 bg-white p-3 rounded-md shadow-sm md:bg-transparent md:p-0 md:shadow-none">
-                <MdLocationOn className="text-lg" />
+              <div className="flex items-center gap-3">
+                <MdLocationOn className="text-xl" />
                 <span>Dyabu Marg, Galkopakhā, Kathmandu</span>
               </div>
             </div>
@@ -294,10 +279,9 @@ const ContactUsPage = () => {
         <div className="flex justify-center mb-6">
           <h1 className="text-3xl font-bold text-center">Map</h1>
         </div>
-
         <div className="max-w-[1400px] mx-auto px-6">
           <iframe
-            className="w-full h-[320px] md:h-[500px] border-0"
+            className="w-full h-[500px] border-0"
             src="https://maps.google.com/maps?width=100%25&height=600&hl=en&q=My%20Computer%20Shop%20(Naksha%20Printing%20&%20Photocopy%20Shop)%20Color%20&%20B/W+(My%20Computer%20Shop)&t=&z=15&ie=UTF8&iwloc=B&output=embed"
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"

@@ -74,7 +74,7 @@ const Quote = ({ isOpen, onClose }) => {
       console.error("Backend error:", error.response?.data);
       alert(
         error.response?.data?.message ||
-          "Server error. Please try again later."
+        "Server error. Please try again later."
       );
     } finally {
       setLoading(false);
@@ -83,14 +83,18 @@ const Quote = ({ isOpen, onClose }) => {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-2 sm:p-4 overflow-auto">
-      <div className="bg-white w-full max-w-md sm:max-w-2xl md:max-w-4xl rounded-lg shadow-lg relative flex flex-col"
-           style={{ maxHeight: "90vh" }}>
+      <div
+        className="bg-white w-full max-w-md sm:max-w-2xl md:max-w-4xl rounded-lg shadow-lg relative flex flex-col"
+        style={{ maxHeight: "90vh" }}
+      >
 
-        <div className="flex justify-between items-center p-4 border-b sticky top-0 bg-white z-10">
-          <h2 className="text-2xl md:text-3xl font-semibold">Request A Quote</h2>
+        <div className="flex justify-center items-center p-4 border-b sticky top-0 bg-white z-10 relative">
+          <h2 className="text-2xl md:text-3xl font-semibold text-center">
+            Request A Quote
+          </h2>
           <button
             onClick={onClose}
-            className="text-red-600 text-2xl cursor-pointer"
+            className="text-red-600 text-2xl absolute right-4 cursor-pointer"
           >
             <FiX />
           </button>
@@ -101,7 +105,7 @@ const Quote = ({ isOpen, onClose }) => {
             onSubmit={handleSubmit}
             className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6"
           >
-          
+
             <div className="flex flex-col gap-1">
               <label className="text-sm font-medium">
                 Name <span className="text-red-500">*</span>
@@ -112,7 +116,7 @@ const Quote = ({ isOpen, onClose }) => {
                 value={formData.name}
                 required
                 onChange={handleChange}
-                className="border p-2 sm:p-3 rounded w-full"
+                className="border p-2 sm:p-3 rounded w-full text-gray-500"
                 placeholder="Enter your name"
               />
             </div>
@@ -127,7 +131,7 @@ const Quote = ({ isOpen, onClose }) => {
                 value={formData.email}
                 required
                 onChange={handleChange}
-                className="border p-2 sm:p-3 rounded w-full"
+                className="border p-2 sm:p-3 rounded w-full text-gray-500"
                 placeholder="Enter your email"
               />
             </div>
@@ -142,7 +146,7 @@ const Quote = ({ isOpen, onClose }) => {
                 value={formData.phone}
                 required
                 onChange={handleChange}
-                className="border p-2 sm:p-3 rounded w-full"
+                className="border p-2 sm:p-3 rounded w-full text-gray-500"
                 placeholder="Enter your phone number"
               />
             </div>
@@ -156,16 +160,14 @@ const Quote = ({ isOpen, onClose }) => {
                 value={formData.serviceId}
                 required
                 onChange={handleChange}
-                className="border p-2 sm:p-3 rounded w-full"
+                className="border p-2 sm:p-3 rounded w-full text-gray-500"
                 disabled={servicesLoading}
               >
-                <option value="">
-                  {servicesLoading
-                    ? "Loading services..."
-                    : "Select your service"}
+                <option value="" disabled>
+                  {servicesLoading ? "Loading services..." : "Select your service"}
                 </option>
                 {services.map((service) => (
-                  <option key={service._id} value={service._id}>
+                  <option key={service._id} value={service._id} className="text-black">
                     {service.title}
                   </option>
                 ))}
@@ -179,19 +181,22 @@ const Quote = ({ isOpen, onClose }) => {
                 name="quantity"
                 value={formData.quantity}
                 onChange={handleChange}
-                className="border p-2 sm:p-3 rounded w-full"
+                className="border p-2 sm:p-3 rounded w-full text-gray-500"
                 placeholder="Enter quantity"
               />
             </div>
 
             <div className="flex flex-col gap-1">
               <label className="text-sm font-medium">Upload Design</label>
-              <input
-                type="file"
-                accept=".pdf,.jpg,.jpeg,.png,.tif,.tiff,.bmp,.webp"
-                onChange={(e) => setFile(e.target.files[0])}
-                className="border p-2 sm:p-3 rounded w-full"
-              />
+              <label className="border p-2 sm:p-3 rounded w-full cursor-pointer flex items-center text-gray-500">
+                {file ? file.name : "Upload your design pdf/tif/jgp/png"}
+                <input
+                  type="file"
+                  accept=".pdf,.jpg,.jpeg,.png,.tif,.tiff,.bmp,.webp"
+                  onChange={(e) => setFile(e.target.files[0])}
+                  className="hidden"
+                />
+              </label>
             </div>
 
             <div className="flex flex-col gap-1 md:col-span-2">
@@ -201,7 +206,7 @@ const Quote = ({ isOpen, onClose }) => {
                 value={formData.message}
                 onChange={handleChange}
                 rows="4"
-                className="border p-2 sm:p-3 rounded w-full"
+                className="border p-2 sm:p-3 rounded w-full text-gray-500"
                 placeholder="Enter message"
               />
             </div>

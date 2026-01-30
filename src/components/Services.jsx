@@ -68,16 +68,16 @@ const Services = () => {
 
         <div className="flex flex-wrap justify-center gap-x-6 gap-y-8 md:gap-x-12 md:gap-y-12">
           {services.slice(0, 4).map((service, index) => {
-            const isTopImage = index % 2 === 0;
+            const isOdd = index % 2 !== 0;
 
             return (
               <div
                 key={service._id || index}
-                className={`flex flex-col items-center text-center 
-                  ${index % 2 !== 0 ? "mt-24 md:mt-45" : ""} 
-                  w-44 sm:w-52 md:w-60`}
+                className={`flex flex-col items-center text-center w-44 sm:w-52 md:w-60
+          ${isOdd ? "md:mt-12" : ""}  // only small stagger on md+ screens
+        `}
               >
-                {isTopImage ? (
+                {index % 2 === 0 ? (
                   <>
                     <img
                       src={`${import.meta.env.VITE_API_BASE_URL}/uploads/${service.images?.[0]}`}
@@ -85,20 +85,16 @@ const Services = () => {
                       className="w-40 h-40 sm:w-48 sm:h-48 md:w-60 md:h-60 object-cover rounded-md shadow-md transition-transform duration-300 hover:scale-105"
                     />
                     <FaArrowUp className="my-2 text-gray-500" />
-                    <span className="text-lg font-medium">
-                      {service.title}
-                    </span>
+                    <span className="text-lg font-medium">{service.title}</span>
                   </>
                 ) : (
                   <>
-                    <span className="text-lg font-medium mb-2">
-                      {service.title}
-                    </span>
+                    <span className="text-lg font-medium mb-2">{service.title}</span>
                     <FaArrowDown className="my-2 text-gray-500" />
                     <img
                       src={`${import.meta.env.VITE_API_BASE_URL}/uploads/${service.images?.[0]}`}
                       alt={service.title}
-                      className="w-40 h-40 sm:w-48 sm:h-48 md:w-60 md:h-60 mt-0 object-cover rounded-md shadow-md transition-transform duration-300 hover:scale-105"
+                      className="w-40 h-40 sm:w-48 sm:h-48 md:w-60 md:h-60 object-cover rounded-md shadow-md transition-transform duration-300 hover:scale-105"
                     />
                   </>
                 )}
