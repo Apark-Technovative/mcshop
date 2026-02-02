@@ -24,23 +24,14 @@ const ContactUsPage = () => {
 
   useEffect(() => {
     if (success) {
-      const timer = setTimeout(() => {
-        setSuccess("");
-      }, 3000);
+      const timer = setTimeout(() => setSuccess(""), 3000);
       return () => clearTimeout(timer);
     }
   }, [success]);
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-    setErrors({
-      ...errors,
-      [e.target.name]: "",
-      submit: "",
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setErrors({ ...errors, [e.target.name]: "", submit: "" });
   };
 
   const validate = () => {
@@ -69,7 +60,6 @@ const ContactUsPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
@@ -79,17 +69,9 @@ const ContactUsPage = () => {
     try {
       setLoading(true);
       setSuccess("");
-
       await axiosInstance.post("/api/contact", formData);
-
       setSuccess("Your message has been sent successfully!");
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        subject: "",
-        message: "",
-      });
+      setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
       setErrors({});
     } catch (error) {
       setErrors({
@@ -112,7 +94,8 @@ const ContactUsPage = () => {
       />
 
       <div className="max-w-6xl mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+
           <div>
             <h2 className="text-3xl font-semibold mb-8">Let’s Get In Touch</h2>
 
@@ -120,7 +103,6 @@ const ContactUsPage = () => {
               {success && (
                 <p className="text-green-600 text-sm font-medium">{success}</p>
               )}
-
               {errors.submit && (
                 <p className="text-red-500 text-sm">{errors.submit}</p>
               )}
@@ -226,30 +208,31 @@ const ContactUsPage = () => {
             </form>
           </div>
 
-          <div className="bg-gray-100 rounded-lg p-8 relative overflow-hidden">
-            <h2 className="text-2xl font-semibold text-center mb-4">
-              Need More Help?
-            </h2>
+          <div className="bg-gray-100 rounded-lg p-6 lg:p-8 relative flex flex-col justify-center items-center text-center overflow-hidden">
 
-            <p className="text-sm text-gray-600 mb-6 text-center">
+            <span className="absolute top-0 left-0 w-6 h-6 border-2 border-yellow-400 rotate-45 opacity-50"></span>
+            <span className="absolute top-1/4 right-4 w-4 h-4 border-2 border-pink-400 rounded-full opacity-50"></span>
+            <span className="absolute bottom-4 left-4 w-5 h-5 border-2 border-orange-400 rotate-45 opacity-50"></span>
+            <span className="absolute bottom-8 right-8 w-3 h-3 border-2 border-indigo-400 rounded-full opacity-50"></span>
+
+            <h2 className="text-3xl font-semibold mb-3">Need More Help?</h2>
+
+            <p className="text-sm text-gray-600 mb-4">
               Our support team is always ready to assist you. Whether you have
               questions about our services, need help with an order, or want a
               custom quote, feel free to reach out through call, email, or by
               visiting our shop.
             </p>
 
-            <div className="space-y-4 text-sm relative z-10">
-              <div className="flex items-center gap-3 cursor-pointer">
+            <div className="space-y-3 text-sm">
+              <div className="flex items-center gap-3 justify-center cursor-pointer">
                 <FiPhone className="text-xl" />
-                <a
-                  href="tel:+9779851082739"
-                  className="hover:text-blue-600 transition"
-                >
+                <a href="tel:+9779851082739" className="hover:text-blue-600 transition">
                   +977-9851082739
                 </a>
               </div>
 
-              <div className="flex items-center gap-3 cursor-pointer">
+              <div className="flex items-center gap-3 justify-center cursor-pointer">
                 <FiMail className="text-xl" />
                 <a
                   href="mailto:mcshopnepal@gmail.com"
@@ -259,18 +242,11 @@ const ContactUsPage = () => {
                 </a>
               </div>
 
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 justify-center">
                 <MdLocationOn className="text-xl" />
                 <span>Dyabu Marg, Galkopakhā, Kathmandu</span>
               </div>
             </div>
-
-            <span className="absolute top-1/3 right-12 w-8 h-8 border-2 border-yellow-400 rotate-45"></span>
-            <span className="absolute top-2/3 left-1/2 w-6 h-6 border-2 border-pink-400 rounded-full"></span>
-            <span className="absolute bottom-4 left-8 w-8 h-8 border-2 border-orange-400 rotate-45"></span>
-            <span className="absolute bottom-2 -left-2 w-4 h-4 border-2 border-green-500 rounded-full"></span>
-            <span className="absolute bottom-4 right-6 w-6 h-6 border-2 border-orange-400 rounded-full"></span>
-            <span className="absolute bottom-3 -right-4 w-3 h-3 border-2 border-indigo-400 rounded-full"></span>
           </div>
         </div>
       </div>
@@ -282,7 +258,7 @@ const ContactUsPage = () => {
         <div className="max-w-[1400px] mx-auto px-6">
           <iframe
             className="w-full h-[500px] border-0"
-            src="https://maps.google.com/maps?width=100%25&height=600&hl=en&q=My%20Computer%20Shop%20(Naksha%20Printing%20&%20Photocopy%20Shop)%20Color%20&%20B/W+(My%20Computer%20Shop)&t=&z=15&ie=UTF8&iwloc=B&output=embed"
+            src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=My%20Computer%20Shop%20(Naksha%20Printing%20&amp;%20Photocopy%20Shop)%20Color%20&amp;%20B/W+(My%20Computer%20Shop)&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
             title="My Computer Shop Location"

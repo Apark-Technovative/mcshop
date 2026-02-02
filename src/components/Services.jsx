@@ -74,7 +74,7 @@ const Services = () => {
               <div
                 key={service._id || index}
                 className={`flex flex-col items-center text-center w-44 sm:w-52 md:w-60
-          ${isOdd ? "md:mt-12" : ""}  // only small stagger on md+ screens
+          ${isOdd ? "md:mt-50" : ""}  
         `}
               >
                 {index % 2 === 0 ? (

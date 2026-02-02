@@ -12,7 +12,6 @@ const Gallery = () => {
     document.title = "Gallery | mcshop";
   }, []);
 
-
   useEffect(() => {
     const fetchGallery = async () => {
       try {
@@ -50,16 +49,6 @@ const Gallery = () => {
     fetchGallery();
   }, []);
 
-  if (loading)
-    return <p className="text-center py-20 text-gray-600">Loading gallery...</p>;
-
-  if (error || images.length === 0)
-    return (
-      <p className="text-center py-20 text-red-500">
-        Failed to load gallery
-      </p>
-    );
-
   const ImageBox = ({ image, index }) => (
     <div
       className="relative mb-3 break-inside-avoid overflow-hidden rounded-lg group opacity-0"
@@ -83,6 +72,10 @@ const Gallery = () => {
     </div>
   );
 
+  const SkeletonBox = () => (
+    <div className="mb-3 break-inside-avoid rounded-lg bg-gray-300 animate-pulse h-[220px]" />
+  );
+
   return (
     <>
       <Hero
@@ -91,16 +84,26 @@ const Gallery = () => {
         description="Explore our gallery to see the quality and variety of work we produce. From engineering drawings and architectural layouts to creative photo prints, business cards, and custom gift items, our gallery showcases real samples of our printing capabilities. Each project represents our commitment to precision, clarity, and customer satisfaction."
       />
 
-      <section className="px-6 md:px-20 py-12 md:py-16 bg-gray-100 overflow-auto max-h-[95vh]">
+      <section className="px-6 md:px-20 py-12 md:py-16 bg-gray-100">
         <p className="text-center text-sm text-gray-600 mb-2">Gallery</p>
-        <h2 className="text-center text-2xl sm:text-3xl md:text-4xl font-bold leading-snug sm:leading-tight mb-4 sm:mb-6">
+        <h2 className="text-center text-2xl sm:text-3xl md:text-4xl font-bold mb-6">
           Spectacular Works From Our <br /> Digital Print Services
         </h2>
 
+        {error && (
+          <p className="text-center text-red-500 py-10">
+            Failed to load gallery
+          </p>
+        )}
+
         <div className="max-w-[1500px] mx-auto columns-2 lg:columns-3 gap-4">
-          {images.map((img, index) => (
-            <ImageBox key={index} image={img} index={index} />
-          ))}
+          {loading
+            ? Array.from({ length: 9 }).map((_, i) => (
+                <SkeletonBox key={i} />
+              ))
+            : images.map((img, index) => (
+                <ImageBox key={index} image={img} index={index} />
+              ))}
         </div>
       </section>
 
