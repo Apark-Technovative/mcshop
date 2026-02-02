@@ -98,12 +98,10 @@ const Gallery = () => {
 
         <div className="max-w-[1500px] mx-auto columns-2 lg:columns-3 gap-4">
           {loading
-            ? Array.from({ length: 9 }).map((_, i) => (
-                <SkeletonBox key={i} />
-              ))
+            ? Array.from({ length: 9 }).map((_, i) => <SkeletonBox key={i} />)
             : images.map((img, index) => (
-                <ImageBox key={index} image={img} index={index} />
-              ))}
+              <ImageBox key={`${img.src}-${index}`} image={img} index={index} />
+            ))}
         </div>
       </section>
 
