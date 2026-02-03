@@ -199,8 +199,8 @@ const ContactUsPage = () => {
                 type="submit"
                 disabled={loading}
                 className={`bg-blue-600 text-white px-6 py-2 rounded-md transition ${loading
-                    ? "opacity-60 cursor-not-allowed"
-                    : "hover:bg-blue-700 cursor-pointer"
+                  ? "opacity-60 cursor-not-allowed"
+                  : "hover:bg-blue-700 cursor-pointer"
                   }`}
               >
                 {loading ? "Sending..." : "Send Message"}
@@ -224,15 +224,15 @@ const ContactUsPage = () => {
               visiting our shop.
             </p>
 
-            <div className="space-y-3 text-sm">
-              <div className="flex items-center gap-3 justify-center cursor-pointer">
+            <div className="space-y-3 text-sm w-full text-left mt-4">
+              <div className="flex items-center gap-3 justify-start cursor-pointer">
                 <FiPhone className="text-xl" />
                 <a href="tel:+9779851082739" className="hover:text-blue-600 transition">
                   +977-9851082739
                 </a>
               </div>
 
-              <div className="flex items-center gap-3 justify-center cursor-pointer">
+              <div className="flex items-center gap-3 justify-start cursor-pointer">
                 <FiMail className="text-xl" />
                 <a
                   href="mailto:mcshopnepal@gmail.com"
@@ -242,8 +242,8 @@ const ContactUsPage = () => {
                 </a>
               </div>
 
-              <div className="flex items-center gap-3 justify-center">
-                <MdLocationOn className="text-xl" />
+              <div className="flex items-center gap-3 justify-start">
+                <MdLocationOn className="text-xl " />
                 <span>Dyabu Marg, Galkopakhā, Kathmandu</span>
               </div>
             </div>
